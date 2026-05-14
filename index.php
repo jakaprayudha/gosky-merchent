@@ -378,30 +378,29 @@
                   </div>
 
                   <h1>
-                     Welcome <br>
-                     Back 👋
+                     Selamat <br>
+                     Datang 👋
                   </h1>
 
                   <p>
-                     Modern login page dengan UI clean, elegant,
-                     responsive dan pengalaman pengguna yang nyaman.
+                     Kelola toko dan produk Anda lebih mudah dalam satu platform. Pantau, atur, dan kembangkan bisnis tenant Anda dengan cepat dan efisien.
                   </p>
 
                   <div class="feature-list">
 
                      <div class="feature-item">
                         <i class="fa-solid fa-shield-halved"></i>
-                        <span>Secure Authentication</span>
+                        <span>Mengelola produk dengan cepat dan praktis.</span>
                      </div>
 
                      <div class="feature-item">
                         <i class="fa-solid fa-bolt"></i>
-                        <span>Fast & Smooth Experience</span>
+                        <span>Pantau operasional dengan mudah.</span>
                      </div>
 
                      <div class="feature-item">
                         <i class="fa-solid fa-mobile-screen"></i>
-                        <span>Responsive All Devices</span>
+                        <span>Lihat perkembangan bisnis yang lebih terorganisir.</span>
                      </div>
 
                   </div>
@@ -427,14 +426,14 @@
                   <div class="input-group-custom">
 
                      <label class="form-label">
-                        Email Address
+                        Email / No.Handphone
                      </label>
 
                      <i class="fa-regular fa-envelope left-icon"></i>
 
                      <input type="text" id="login" name="login"
                         class="form-control"
-                        placeholder="Masukkan email anda">
+                        placeholder="Masukkan email / nomor handphone">
 
                   </div>
 
@@ -493,9 +492,7 @@
                   <!-- BUTTON -->
                   <button type="submit" id="loginBtn"
                      class="btn btn-login">
-
                      Login Now
-
                   </button>
 
 
@@ -519,8 +516,8 @@
                      <button type="button"
                         class="btn social-btn">
 
-                        <i class="fa-brands fa-github me-2"></i>
-                        Github
+                        <i class="fa-brands fa-facebook me-2"></i>
+                        Facebook
 
                      </button>
 

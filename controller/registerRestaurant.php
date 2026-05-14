@@ -1,206 +1,173 @@
 <?php
-
 require '../config/config.php';
 
 header('Content-Type: application/json');
 
-/*
-|--------------------------------------------------------------------------
-| POST
-|--------------------------------------------------------------------------
-*/
+try {
 
-$name           = trim($_POST['name'] ?? '');
-$email          = trim($_POST['email'] ?? '');
-$phone          = trim($_POST['phone'] ?? '');
-$password       = trim($_POST['password'] ?? '');
+   // =========================================
+   // INPUT
+   // =========================================
+   $restaurantName =
+      trim($_POST['restaurant_name'] ?? '');
 
-$restaurant     = trim($_POST['restaurant_name'] ?? '');
-$category       = trim($_POST['category_id'] ?? '');
+   $categoryId =
+      trim($_POST['category_id'] ?? '');
 
-$address        = trim($_POST['address'] ?? '');
-$latitude       = trim($_POST['latitude'] ?? '');
-$longitude      = trim($_POST['longitude'] ?? '');
+   $phone =
+      trim($_POST['phone'] ?? '');
 
-$openTime       = trim($_POST['open_time'] ?? '');
-$closeTime      = trim($_POST['close_time'] ?? '');
+   $address =
+      trim($_POST['address'] ?? '');
 
-/*
-|--------------------------------------------------------------------------
-| VALIDATION
-|--------------------------------------------------------------------------
-*/
+   $latitude =
+      trim($_POST['latitude'] ?? '');
 
-if (
+   $longitude =
+      trim($_POST['longitude'] ?? '');
 
-   empty($name) ||
-   empty($email) ||
-   empty($phone) ||
-   empty($password) ||
-   empty($restaurant)
+   $openTime =
+      trim($_POST['open_time'] ?? '');
 
-) {
+   $closeTime =
+      trim($_POST['close_time'] ?? '');
 
-   echo json_encode([
+   // owner
+   $name =
+      trim($_POST['name'] ?? '');
 
-      'status' => 'error',
-      'message' => 'Semua field wajib diisi'
+   $email =
+      trim($_POST['email'] ?? '');
 
+   $password =
+      trim($_POST['password'] ?? '');
+
+   // =========================================
+   // VALIDASI
+   // =========================================
+   if (
+      empty($restaurantName) ||
+      empty($categoryId) ||
+      empty($phone) ||
+      empty($address) ||
+      empty($name) ||
+      empty($email) ||
+      empty($password)
+   ) {
+
+      echo json_encode([
+
+         'status'  => 'error',
+         'message' => 'Lengkapi semua field wajib'
+
+      ]);
+
+      exit;
+   }
+
+   // =========================================
+   // CHECK EMAIL USER
+   // =========================================
+   $checkEmail = $pdo->prepare("
+
+      SELECT id
+      FROM users
+
+      WHERE email = :email
+
+      AND deleted_at IS NULL
+
+      LIMIT 1
+
+   ");
+
+   $checkEmail->execute([
+      'email' => $email
    ]);
 
-   exit;
-}
+   if ($checkEmail->fetch()) {
 
-/*
-|--------------------------------------------------------------------------
-| CHECK EMAIL
-|--------------------------------------------------------------------------
-*/
+      echo json_encode([
 
-$check = $pdo->prepare("
+         'status'  => 'error',
+         'message' => 'Email sudah digunakan'
 
-    SELECT id
-    FROM users
+      ]);
 
-    WHERE
-        email = :email
-        OR phone_number = :phone
+      exit;
+   }
 
-    LIMIT 1
+   // =========================================
+   // CHECK RESTAURANT
+   // =========================================
+   $checkRestaurant = $pdo->prepare("
 
-");
+      SELECT id, banner_url
+      FROM restaurants
 
-$check->execute([
+      WHERE phone = :phone
 
-   'email' => $email,
-   'phone' => $phone
+      LIMIT 1
 
-]);
+   ");
 
-if ($check->fetch()) {
-
-   echo json_encode([
-
-      'status' => 'error',
-      'message' => 'Email / phone sudah digunakan'
-
+   $checkRestaurant->execute([
+      'phone' => $phone
    ]);
 
-   exit;
-}
+   $restaurant =
+      $checkRestaurant->fetch(PDO::FETCH_ASSOC);
 
-/*
-|--------------------------------------------------------------------------
-| UPLOAD BANNER
-|--------------------------------------------------------------------------
-*/
+   // =========================================
+   // BANNER
+   // =========================================
+   $bannerPath = null;
 
-$banner = 'uploads/default-banner.png';
+   if (
+      isset($_FILES['banner']) &&
+      $_FILES['banner']['error'] === 0
+   ) {
 
-if (isset($_FILES['banner'])) {
+      $dir =
+         '../storage/uploads/banners/';
 
-   if ($_FILES['banner']['error'] == 0) {
+      if (!is_dir($dir)) {
+
+         mkdir($dir, 0777, true);
+      }
 
       $ext =
-         pathinfo(
-            $_FILES['banner']['name'],
-            PATHINFO_EXTENSION
+         strtolower(
+            pathinfo(
+               $_FILES['banner']['name'],
+               PATHINFO_EXTENSION
+            )
          );
 
       $fileName =
-         time() . '_' . rand(100, 999) . '.' . $ext;
+         uniqid() . '.' . $ext;
 
-      $uploadPath =
-         '../uploads/' . $fileName;
+      $target =
+         $dir . $fileName;
 
       move_uploaded_file(
          $_FILES['banner']['tmp_name'],
-         $uploadPath
+         $target
       );
 
-      $banner =
-         'uploads/' . $fileName;
+      $bannerPath =
+         '/storage/uploads/banners/' .
+         $fileName;
    }
-}
 
-/*
-|--------------------------------------------------------------------------
-| HASH PASSWORD
-|--------------------------------------------------------------------------
-*/
+   // =========================================
+   // INSERT RESTAURANT
+   // =========================================
+   if (!$restaurant) {
 
-$hash = password_hash(
+      $insertRestaurant = $pdo->prepare("
 
-   $password,
-
-   PASSWORD_BCRYPT,
-
-   [
-      'cost' => 12
-   ]
-
-);
-
-/*
-|--------------------------------------------------------------------------
-| DB TRANSACTION
-|--------------------------------------------------------------------------
-*/
-
-try {
-
-   $pdo->beginTransaction();
-
-   /*
-    |--------------------------------------------------------------------------
-    | INSERT USER
-    |--------------------------------------------------------------------------
-    */
-
-   $insertUser = $pdo->prepare("
-
-        INSERT INTO users (
-
-            name,
-            email,
-            phone_number,
-            password,
-            role,
-            created_at
-
-        )
-
-        VALUES (
-
-            :name,
-            :email,
-            :phone,
-            :password,
-            'admin',
-            NOW()
-
-        )
-
-    ");
-
-   $insertUser->execute([
-
-      'name' => $name,
-      'email' => $email,
-      'phone' => $phone,
-      'password' => $hash
-
-   ]);
-
-   /*
-    |--------------------------------------------------------------------------
-    | INSERT RESTAURANT
-    |--------------------------------------------------------------------------
-    */
-
-   $insertRestaurant = $pdo->prepare("
-
-        INSERT INTO restaurants (
+         INSERT INTO restaurants (
 
             name,
             category_id,
@@ -214,55 +181,153 @@ try {
             close_time,
             created_at
 
-        )
-
-        VALUES (
+         ) VALUES (
 
             :name,
-            :category,
+            :category_id,
             :address,
             :latitude,
             :longitude,
             :phone,
-            :banner,
+            :banner_url,
             1,
             :open_time,
             :close_time,
             NOW()
 
-        )
+         )
 
-    ");
+      ");
 
-   $insertRestaurant->execute([
+      $insertRestaurant->execute([
 
-      'name' => $restaurant,
-      'category' => $category,
-      'address' => $address,
-      'latitude' => $latitude,
-      'longitude' => $longitude,
-      'phone' => $phone,
-      'banner' => $banner,
-      'open_time' => $openTime,
-      'close_time' => $closeTime
+         'name'         => $restaurantName,
+         'category_id'  => $categoryId,
+         'address'      => $address,
+         'latitude'     => $latitude,
+         'longitude'    => $longitude,
+         'phone'        => $phone,
+         'banner_url'   => $bannerPath,
+         'open_time'    => $openTime,
+         'close_time'   => $closeTime
+
+      ]);
+
+      $restaurantId =
+         $pdo->lastInsertId();
+   } else {
+
+      // =====================================
+      // RESTAURANT SUDAH ADA
+      // =====================================
+      $restaurantId =
+         $restaurant['id'];
+
+      // optional update data restaurant
+      $updateRestaurant = $pdo->prepare("
+
+         UPDATE restaurants
+         SET
+
+            name         = :name,
+            category_id  = :category_id,
+            address      = :address,
+            latitude     = :latitude,
+            longitude    = :longitude,
+            open_time    = :open_time,
+            close_time   = :close_time,
+            updated_at   = NOW()
+
+         WHERE id = :id
+
+      ");
+
+      $updateRestaurant->execute([
+
+         'name'         => $restaurantName,
+         'category_id'  => $categoryId,
+         'address'      => $address,
+         'latitude'     => $latitude,
+         'longitude'    => $longitude,
+         'open_time'    => $openTime,
+         'close_time'   => $closeTime,
+         'id'           => $restaurantId
+
+      ]);
+
+      // update banner jika upload baru
+      if ($bannerPath) {
+
+         $updateBanner = $pdo->prepare("
+
+            UPDATE restaurants
+            SET banner_url = :banner
+            WHERE id = :id
+
+         ");
+
+         $updateBanner->execute([
+
+            'banner' => $bannerPath,
+            'id'     => $restaurantId
+
+         ]);
+      }
+   }
+
+   // =========================================
+   // INSERT USER
+   // =========================================
+   $insertUser = $pdo->prepare("
+
+      INSERT INTO users (
+
+         name,
+         email,
+         phone_number,
+         password,
+         role,
+         created_at
+
+      ) VALUES (
+
+         :name,
+         :email,
+         :phone_number,
+         :password,
+         'merchent',
+         NOW()
+
+      )
+
+   ");
+
+   $insertUser->execute([
+
+      'name'         => $name,
+      'email'        => $email,
+      'phone_number' => $phone,
+      'password'     => password_hash(
+         $password,
+         PASSWORD_DEFAULT
+      )
 
    ]);
 
-   $pdo->commit();
-
+   // =========================================
+   // SUCCESS
+   // =========================================
    echo json_encode([
 
-      'status' => 'success',
-      'message' => 'Restaurant berhasil didaftarkan'
+      'status'  => 'success',
+      'message' => 'Register merchant berhasil'
 
    ]);
 } catch (Exception $e) {
 
-   $pdo->rollBack();
-
    echo json_encode([
 
-      'status' => 'error',
+      'status'  => 'error',
       'message' => $e->getMessage()
 
    ]);

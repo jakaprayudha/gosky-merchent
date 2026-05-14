@@ -603,12 +603,12 @@
                </div>
 
                <h1>
-                  Grow Your <br>
-                  Restaurant 🚀
+                  Bergabung bersama <br>
+                  Gosky 🚀
                </h1>
 
                <p>
-                  Daftarkan merchant restaurant anda
+                  Daftarkan toko anda
                   untuk menjangkau lebih banyak customer
                   dengan sistem modern dan cepat.
                </p>
@@ -620,7 +620,7 @@
                      <i class="fa-solid fa-chart-line"></i>
 
                      <span>
-                        Increase Restaurant Revenue
+                        Menambah pendapatan toko anda
                      </span>
 
                   </div>
@@ -630,7 +630,7 @@
                      <i class="fa-solid fa-bolt"></i>
 
                      <span>
-                        Fast Merchant Dashboard
+                        Anda dapat analisa laporan
                      </span>
 
                   </div>
@@ -640,7 +640,7 @@
                      <i class="fa-solid fa-mobile-screen"></i>
 
                      <span>
-                        Mobile Friendly Experience
+                        Mudah mengelola toko anda
                      </span>
 
                   </div>
@@ -657,11 +657,11 @@
             <div class="header-register">
 
                <h2>
-                  Register Merchant
+                  Register Toko
                </h2>
 
                <p>
-                  Lengkapi informasi restaurant dan akun owner.
+                  Lengkapi informasi toko dan akun owner.
                </p>
 
             </div>
@@ -682,20 +682,53 @@
                   </div>
 
                   <h5>
-                     Restaurant Information
+                     Informasi Toko
                   </h5>
 
                </div>
 
                <div class="row">
 
-                  <!-- RESTAURANT -->
+                  <!-- PHONE FIRST -->
                   <div class="col-12">
 
                      <div class="input-group-custom">
 
                         <label class="form-label">
-                           Restaurant Name
+                           No.Telepon Toko
+                        </label>
+
+                        <i class="fa-solid fa-phone left-icon"></i>
+
+                        <input type="text"
+                           name="phone"
+                           id="phone"
+                           class="form-control"
+                           placeholder="+62xxx"
+                           onblur="checkRestaurantPhone()">
+
+                     </div>
+
+                  </div>
+
+                  <!-- RESTAURANT FOUND -->
+                  <div class="col-12">
+
+                     <div id="restaurantInfo"
+                        class="alert border-0 rounded-4 d-none"
+                        style="background:#fff9e2;">
+
+                     </div>
+
+                  </div>
+
+                  <!-- RESTAURANT -->
+                  <div class="col-6">
+
+                     <div class="input-group-custom">
+
+                        <label class="form-label">
+                           Nama Toko
                         </label>
 
                         <i class="fa-solid fa-store left-icon"></i>
@@ -716,7 +749,7 @@
                      <div class="input-group-custom">
 
                         <label class="form-label">
-                           Category
+                           Kategori
                         </label>
 
                         <i class="fa-solid fa-layer-group left-icon"></i>
@@ -736,26 +769,7 @@
 
                   </div>
 
-                  <!-- PHONE -->
-                  <div class="col-md-6">
 
-                     <div class="input-group-custom">
-
-                        <label class="form-label">
-                           Restaurant Phone
-                        </label>
-
-                        <i class="fa-solid fa-phone left-icon"></i>
-
-                        <input type="text"
-                           name="phone"
-                           id="phone"
-                           class="form-control"
-                           placeholder="Nomor restaurant">
-
-                     </div>
-
-                  </div>
 
                   <!-- BANNER -->
                   <div class="col-12">
@@ -775,7 +789,7 @@
                            class="banner-label">
 
                            <img id="bannerPreview"
-                              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='400' viewBox='0 0 1200 400'%3E%3Crect width='1200' height='400' fill='%23f5f5f5'/%3E%3Cg fill='%23c4c4c4'%3E%3Cpath d='M555 145h90v90h-90z'/%3E%3Cpath d='M580 120h40v40h-40z'/%3E%3C/g%3E%3Ctext x='50%25' y='58%25' dominant-baseline='middle' text-anchor='middle' font-family='Poppins,sans-serif' font-size='34' fill='%23999999'%3EUpload Restaurant Banner%3C/text%3E%3C/svg%3E">
+                              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='400' viewBox='0 0 1200 400'%3E%3Crect width='1200' height='400' fill='%23f5f5f5'/%3E%3Cg fill='%23c4c4c4'%3E%3Cpath d='M555 145h90v90h-90z'/%3E%3Cpath d='M580 120h40v40h-40z'/%3E%3C/g%3E%3Ctext x='50%25' y='58%25' dominant-baseline='middle' text-anchor='middle' font-family='Poppins,sans-serif' font-size='34' fill='%23999999'%3EUpload Toko Banner%3C/text%3E%3C/svg%3E">
 
                            <div class="banner-overlay">
 
@@ -799,7 +813,7 @@
                      <div class="input-group-custom">
 
                         <label class="form-label">
-                           Address
+                           Alamat
                         </label>
 
                         <i class="fa-solid fa-location-dot left-icon"></i>
@@ -823,7 +837,7 @@
 
                         <i class="fa-solid fa-location-crosshairs me-2"></i>
 
-                        Detect My Location
+                        Klik Untuk Deteksi Toko Anda
 
                      </button>
 
@@ -877,7 +891,7 @@
                      <div class="input-group-custom">
 
                         <label class="form-label">
-                           Open Time
+                           Jam Buka
                         </label>
 
                         <input type="time"
@@ -895,7 +909,7 @@
                      <div class="input-group-custom">
 
                         <label class="form-label">
-                           Close Time
+                           Jam Tutup
                         </label>
 
                         <input type="time"
@@ -919,7 +933,7 @@
                   </div>
 
                   <h5>
-                     Owner Information
+                     Informasi Pemilik
                   </h5>
 
                </div>
@@ -932,7 +946,7 @@
                      <div class="input-group-custom">
 
                         <label class="form-label">
-                           Full Name
+                           Nama Lengkap
                         </label>
 
                         <i class="fa-regular fa-user left-icon"></i>
@@ -953,7 +967,7 @@
                      <div class="input-group-custom">
 
                         <label class="form-label">
-                           Email Address
+                           Alamat Email
                         </label>
 
                         <i class="fa-regular fa-envelope left-icon"></i>
@@ -1003,7 +1017,7 @@
                      <div class="input-group-custom">
 
                         <label class="form-label">
-                           Confirm Password
+                           Ulangi Password
                         </label>
 
                         <i class="fa-solid fa-lock left-icon"></i>
@@ -1051,7 +1065,7 @@
                   class="btn btn-register"
                   id="registerBtn">
 
-                  Create Merchant Account
+                  Buat Akun Toko
 
                </button>
 
@@ -1075,6 +1089,7 @@
 
    <!-- BOOTSTRAP -->
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
    <script>
       /*
@@ -1305,29 +1320,56 @@
 
                if (result.status === 'success') {
 
-                  alertArea.innerHTML = `
-                            <div class="alert alert-success border-0 rounded-4 mb-4">
+                  // =====================================
+                  // SUCCESS
+                  // =====================================
+                  Swal.fire({
 
-                                ${result.message}
+                     icon: 'success',
 
-                            </div>
-                        `;
+                     title: 'Register Berhasil 🎉',
+
+                     html: `
+         Akun merchant berhasil dibuat
+         <br><br>
+         Redirect ke halaman login...
+      `,
+
+                     timer: 2500,
+
+                     timerProgressBar: true,
+
+                     showConfirmButton: false,
+
+                     confirmButtonColor: '#f4c400'
+
+                  });
 
                   setTimeout(() => {
 
                      window.location.href = 'index';
 
-                  }, 1500);
+                  }, 2500);
 
                } else {
 
-                  alertArea.innerHTML = `
-                            <div class="alert alert-danger border-0 rounded-4 mb-4">
+                  // =====================================
+                  // ERROR
+                  // =====================================
+                  Swal.fire({
 
-                                ${result.message}
+                     icon: 'error',
 
-                            </div>
-                        `;
+                     title: 'Register Gagal',
+
+                     text: result.message ??
+
+                        'Terjadi kesalahan saat register merchant',
+
+                     confirmButtonColor: '#dc3545'
+
+                  });
+
                }
 
             } catch (error) {
@@ -1356,7 +1398,219 @@
                 `;
 
          });
+      /*
+      |--------------------------------------------------------------------------
+      | CHECK PHONE RESTAURANT
+      |--------------------------------------------------------------------------
+      */
+
+      async function checkRestaurantPhone() {
+
+         const phoneInput =
+            document.getElementById('phone');
+
+         const restaurantInfo =
+            document.getElementById('restaurantInfo');
+
+         let phone =
+            phoneInput.value.trim();
+
+         if (!phone) {
+
+            restaurantInfo.classList.add('d-none');
+            return;
+         }
+
+         /*
+         |--------------------------------------------------------------------------
+         | FORMAT +62
+         |--------------------------------------------------------------------------
+         */
+
+         phone =
+            phone.replace(/\D/g, '');
+
+         if (phone.startsWith('0')) {
+
+            phone =
+               '+62' + phone.substring(1);
+
+         } else if (phone.startsWith('62')) {
+
+            phone =
+               '+' + phone;
+
+         } else if (!phone.startsWith('62')) {
+
+            phone =
+               '+62' + phone;
+         }
+
+         phoneInput.value = phone;
+
+         try {
+
+            const formData =
+               new FormData();
+
+            formData.append(
+               'phone',
+               phone
+            );
+
+            const response =
+               await fetch(
+                  'controller/checkRestaurantPhone.php', {
+                     method: 'POST',
+                     body: formData
+                  }
+               );
+
+            const result =
+               await response.json();
+
+            /*
+            |--------------------------------------------------------------------------
+            | FOUND
+            |--------------------------------------------------------------------------
+            */
+
+            if (result.status === 'found') {
+
+               const data = result.data;
+
+               // =====================================
+               // ALERT INFO
+               // =====================================
+               restaurantInfo.classList.remove('d-none');
+
+               restaurantInfo.innerHTML = `
+      <div class="d-flex align-items-center">
+
+         <div class="me-3">
+
+            <i class="fa-solid fa-circle-check
+               text-success fs-2"></i>
+
+         </div>
+
+         <div>
+
+            <div class="fw-bold text-success mb-1">
+
+               Restaurant Anda Telah Terdaftar 🎉
+
+            </div>
+
+            <small class="text-muted">
+
+               Silahkan lengkapi data toko anda
+               untuk melanjutkan registrasi merchant.
+
+            </small>
+
+         </div>
+
+      </div>
+   `;
+
+               // =====================================
+               // AUTO FILL FORM
+               // =====================================
+
+               // restaurant
+               document.getElementById(
+                  'restaurant_name'
+               ).value = data.name ?? '';
+
+               // category
+               document.getElementById(
+                  'category_id'
+               ).value = data.category_id ?? '';
+
+               // address
+               document.getElementById(
+                  'address'
+               ).value = data.address ?? '';
+
+               // latitude
+               document.getElementById(
+                  'latitude'
+               ).value = data.latitude ?? '';
+
+               // longitude
+               document.getElementById(
+                  'longitude'
+               ).value = data.longitude ?? '';
+
+               // open time
+               document.getElementById(
+                  'open_time'
+               ).value = data.open_time ?? '';
+
+               // close time
+               document.getElementById(
+                  'close_time'
+               ).value = data.close_time ?? '';
+
+               // =====================================
+               // BANNER PREVIEW
+               // =====================================
+
+               if (data.banner_url) {
+
+                  document.getElementById(
+                     'bannerPreview'
+                  ).src = data.banner_url;
+               }
+
+            } else {
+
+               /*
+               |--------------------------------------------------------------------------
+               | NOT FOUND
+               |--------------------------------------------------------------------------
+               */
+
+               restaurantInfo.classList.remove(
+                  'd-none'
+               );
+
+               restaurantInfo.innerHTML = `
+            <div class="text-danger fw-semibold">
+
+               <i class="fa-solid fa-circle-xmark me-2"></i>
+
+               Nomor HP belum terdaftar
+               pada master toko kami
+
+            </div>
+
+            <small class="text-muted">
+               Silahkan melakukan registrasi toko untuk bergabung bersama kami
+            </small>
+         `;
+            }
+
+         } catch (error) {
+
+            console.error(error);
+
+            restaurantInfo.classList.remove(
+               'd-none'
+            );
+
+            restaurantInfo.innerHTML = `
+         <div class="text-danger">
+
+            Gagal validasi nomor HP
+
+         </div>
+      `;
+         }
+      }
    </script>
+
 
 </body>
 
