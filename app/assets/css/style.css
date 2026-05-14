@@ -676,3 +676,557 @@ body {
     font-size: 24px;
   }
 }
+
+/*
+|--------------------------------------------------------------------------
+| PRODUCT SUMMARY
+|--------------------------------------------------------------------------
+*/
+
+.summary-card {
+  background: white;
+
+  border-radius: 28px;
+
+  padding: 24px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  height: 100%;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+
+  transition: 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-4px);
+}
+
+.summary-icon {
+  width: 72px;
+  height: 72px;
+
+  border-radius: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+
+  flex-shrink: 0;
+}
+
+.summary-card h3 {
+  margin: 0 0 6px;
+
+  font-size: 30px;
+  font-weight: 700;
+
+  color: var(--text);
+}
+
+.summary-card p {
+  margin: 0;
+
+  color: var(--text-light);
+
+  font-size: 14px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| SUMMARY COLORS
+|--------------------------------------------------------------------------
+*/
+
+.bg-primary-soft {
+  background: rgba(0, 123, 255, 0.12);
+
+  color: #007bff;
+}
+
+.bg-success-soft {
+  background: rgba(25, 190, 107, 0.12);
+
+  color: #19be6b;
+}
+
+.bg-warning-soft {
+  background: rgba(255, 170, 0, 0.12);
+
+  color: #ffae00;
+}
+
+.bg-danger-soft {
+  background: rgba(255, 59, 59, 0.12);
+
+  color: #ff3b3b;
+}
+
+/*
+|--------------------------------------------------------------------------
+| FILTER WRAPPER
+|--------------------------------------------------------------------------
+*/
+
+.filter-wrapper {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  flex-wrap: wrap;
+}
+
+/*
+|--------------------------------------------------------------------------
+| VIEW SWITCH
+|--------------------------------------------------------------------------
+*/
+
+.view-switch {
+  display: flex;
+
+  gap: 12px;
+}
+
+.view-btn {
+  width: 56px;
+  height: 56px;
+
+  border: none;
+
+  border-radius: 18px;
+
+  background: white;
+
+  color: #777;
+
+  transition: 0.3s ease;
+
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.05);
+}
+
+.view-btn:hover {
+  transform: translateY(-2px);
+}
+
+.view-btn.active {
+  background: linear-gradient(135deg, #f7c600, #dfad00);
+
+  color: white;
+
+  box-shadow: 0 12px 24px rgba(244, 196, 0, 0.24);
+}
+
+/*
+|--------------------------------------------------------------------------
+| PRODUCT TABLE
+|--------------------------------------------------------------------------
+*/
+
+.product-table-info {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+}
+
+.product-table-info img {
+  width: 62px;
+  height: 62px;
+
+  border-radius: 18px;
+
+  object-fit: cover;
+
+  flex-shrink: 0;
+}
+
+.product-table-info h6 {
+  margin: 0 0 6px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: var(--text);
+}
+
+.product-table-info span {
+  font-size: 13px;
+
+  color: var(--text-light);
+}
+
+/*
+|--------------------------------------------------------------------------
+| TABLE ACTION
+|--------------------------------------------------------------------------
+*/
+
+.table-action {
+  display: flex;
+
+  gap: 10px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| PRODUCT GRID FIX
+|--------------------------------------------------------------------------
+*/
+
+#productGrid .product-card {
+  height: 100%;
+}
+
+#productGrid .col-lg-4 {
+  display: flex;
+}
+
+/*
+|--------------------------------------------------------------------------
+| PRODUCT TABLE CARD
+|--------------------------------------------------------------------------
+*/
+
+#productTable {
+  margin-top: 30px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| SEARCH FIX
+|--------------------------------------------------------------------------
+*/
+
+.search-box {
+  min-width: 260px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| MOBILE FIX
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 768px) {
+  .summary-card {
+    padding: 20px;
+  }
+
+  .summary-icon {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 18px;
+
+    font-size: 20px;
+  }
+
+  .summary-card h3 {
+    font-size: 24px;
+  }
+
+  .filter-wrapper {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
+
+  .view-switch {
+    width: 100%;
+  }
+
+  .view-btn {
+    flex: 1;
+  }
+
+  .btn-primary-custom {
+    width: 100%;
+  }
+
+  .product-table-info {
+    min-width: 240px;
+  }
+
+  .table-custom {
+    min-width: 900px;
+  }
+}
+
+/*
+|--------------------------------------------------------------------------
+| PRODUCT PAGE FIX
+|--------------------------------------------------------------------------
+*/
+
+.page-header {
+  margin-bottom: 28px;
+}
+
+.filter-wrapper {
+  background: white;
+
+  border-radius: 30px;
+
+  padding: 22px;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
+}
+
+.search-box {
+  position: relative;
+
+  width: 320px;
+}
+
+.search-box i {
+  position: absolute;
+
+  left: 20px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #999;
+
+  font-size: 16px;
+}
+
+.search-input {
+  width: 100%;
+
+  height: 58px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 18px;
+
+  background: #f7f7f7;
+
+  padding: 0 20px 0 54px;
+
+  font-size: 14px;
+}
+
+.filter-select {
+  height: 58px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 18px;
+
+  background: #f7f7f7;
+
+  padding: 0 18px;
+
+  min-width: 220px;
+}
+
+.view-switch {
+  display: flex;
+
+  gap: 10px;
+
+  background: #f7f7f7;
+
+  padding: 6px;
+
+  border-radius: 18px;
+}
+
+.view-btn {
+  width: 50px;
+  height: 50px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: transparent;
+
+  color: #777;
+
+  transition: 0.3s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.view-btn.active {
+  background: linear-gradient(135deg, #f7c600, #dfad00);
+
+  color: white;
+
+  box-shadow: 0 10px 22px rgba(244, 196, 0, 0.24);
+}
+
+#productGrid {
+  margin-top: 28px;
+}
+
+#productGrid .col-lg-4 {
+  display: flex;
+}
+
+.product-card {
+  width: 100%;
+
+  background: white;
+
+  border-radius: 30px;
+
+  overflow: hidden;
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
+
+  transition: 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-image {
+  height: 240px;
+
+  overflow: hidden;
+
+  position: relative;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: 0.4s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.06);
+}
+
+.product-body {
+  padding: 24px;
+}
+
+.product-name {
+  font-size: 24px;
+  font-weight: 700;
+
+  margin-bottom: 10px;
+
+  color: var(--text);
+}
+
+.product-desc {
+  color: var(--text-light);
+
+  line-height: 1.8;
+
+  margin-bottom: 20px;
+}
+
+.product-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.product-price h4 {
+  font-size: 28px;
+  font-weight: 700;
+
+  margin: 0;
+}
+
+.product-footer {
+  display: flex;
+
+  gap: 12px;
+}
+
+.btn-product {
+  flex: 1;
+
+  height: 50px;
+
+  border: none;
+
+  border-radius: 16px;
+
+  font-weight: 600;
+
+  transition: 0.3s ease;
+}
+
+.btn-edit {
+  background: #f3f3f3;
+}
+
+.btn-view {
+  background: linear-gradient(135deg, #f7c600, #dfad00);
+
+  color: white;
+}
+
+/*
+|--------------------------------------------------------------------------
+| MOBILE
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 768px) {
+  .filter-wrapper {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .search-box {
+    width: 100%;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
+
+  .view-switch {
+    width: 100%;
+  }
+
+  .view-btn {
+    flex: 1;
+  }
+
+  .btn-primary-custom {
+    width: 100%;
+  }
+}

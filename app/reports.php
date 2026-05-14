@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+   <meta charset="UTF-8">
+
+   <meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+   <title>Reports Management</title>
+
+   <!-- Bootstrap -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet">
+
+   <!-- Font Awesome -->
+   <link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+   <!-- Google Font -->
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet">
+
+   <!-- Custom CSS -->
+   <link rel="stylesheet"
+      href="assets/css/style.css">
+
+</head>
+
+<body>
+
+   <!-- SIDEBAR -->
+   <?php require 'partial/sidebar.php'; ?>
+
+   <!-- MAIN -->
+   <div class="main-content">
+
+      <!-- TOPBAR -->
+      <?php require 'partial/topbar.php'; ?>
+
+      <!-- CONTENT -->
+      <div class="content-wrapper">
+
+         <!-- STATS -->
+         <div class="row g-4 mb-4">
+
+            <!-- REPORT -->
+            <div class="col-xl-3 col-md-6">
+
+               <div class="stats-card">
+
+                  <div class="stats-icon">
+
+                     <i class="fa-solid fa-file-lines"></i>
+
+                  </div>
+
+                  <h3>
+                     248
+                  </h3>
+
+                  <p>
+                     Total Reports
+                  </p>
+
+               </div>
+
+            </div>
+
+            <!-- PDF -->
+            <div class="col-xl-3 col-md-6">
+
+               <div class="stats-card">
+
+                  <div class="stats-icon">
+
+                     <i class="fa-solid fa-file-pdf"></i>
+
+                  </div>
+
+                  <h3>
+                     120
+                  </h3>
+
+                  <p>
+                     PDF Exports
+                  </p>
+
+               </div>
+
+            </div>
+
+            <!-- EXCEL -->
+            <div class="col-xl-3 col-md-6">
+
+               <div class="stats-card">
+
+                  <div class="stats-icon">
+
+                     <i class="fa-solid fa-file-excel"></i>
+
+                  </div>
+
+                  <h3>
+                     84
+                  </h3>
+
+                  <p>
+                     Excel Exports
+                  </p>
+
+               </div>
+
+            </div>
+
+            <!-- REVENUE -->
+            <div class="col-xl-3 col-md-6">
+
+               <div class="stats-card">
+
+                  <div class="stats-icon">
+
+                     <i class="fa-solid fa-wallet"></i>
+
+                  </div>
+
+                  <h3>
+                     $48K
+                  </h3>
+
+                  <p>
+                     Monthly Revenue
+                  </p>
+
+               </div>
+
+            </div>
+
+         </div>
+
+         <!-- FILTER -->
+         <div class="page-header">
+
+            <div class="filter-wrapper">
+
+               <!-- SEARCH -->
+               <div class="search-box">
+
+                  <i class="fa-solid fa-magnifying-glass"></i>
+
+                  <input type="text"
+                     class="search-input"
+                     placeholder="Search report...">
+
+               </div>
+
+               <!-- REPORT TYPE -->
+               <select class="filter-select">
+
+                  <option>
+                     All Reports
+                  </option>
+
+                  <option>
+                     Sales Report
+                  </option>
+
+                  <option>
+                     Customer Report
+                  </option>
+
+                  <option>
+                     Orders Report
+                  </option>
+
+               </select>
+
+               <!-- DATE -->
+               <select class="filter-select">
+
+                  <option>
+                     This Month
+                  </option>
+
+                  <option>
+                     Last Month
+                  </option>
+
+                  <option>
+                     This Year
+                  </option>
+
+               </select>
+
+            </div>
+
+         </div>
+
+         <!-- REPORT TABLE -->
+         <div class="content-card">
+
+            <div class="card-header-custom">
+
+               <div>
+
+                  <h4>
+
+                     Generated Reports
+
+                  </h4>
+
+                  <p class="text-muted mb-0">
+
+                     Download and export merchant reports
+
+                  </p>
+
+               </div>
+
+            </div>
+
+            <div class="table-responsive">
+
+               <table class="table-custom">
+
+                  <thead>
+
+                     <tr>
+
+                        <th>Report Name</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                        <th>Generated By</th>
+                        <th>Status</th>
+                        <th>Size</th>
+                        <th>Action</th>
+
+                     </tr>
+
+                  </thead>
+
+                  <tbody>
+
+                     <!-- ITEM -->
+                     <tr>
+
+                        <td>
+
+                           <div class="product-table-info">
+
+                              <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
+
+                              <div>
+
+                                 <h6>
+                                    Monthly Sales Report
+                                 </h6>
+
+                                 <span>
+                                    REP-2026-001
+                                 </span>
+
+                              </div>
+
+                           </div>
+
+                        </td>
+
+                        <td>
+                           Sales
+                        </td>
+
+                        <td>
+                           09 May 2026
+                        </td>
+
+                        <td>
+                           Zack Walker
+                        </td>
+
+                        <td>
+
+                           <span class="badge-status badge-success">
+
+                              Ready
+
+                           </span>
+
+                        </td>
+
+                        <td>
+                           2.4 MB
+                        </td>
+
+                        <td>
+
+                           <div class="table-action">
+
+                              <!-- PDF -->
+                              <a href="export/report.pdf"
+                                 class="action-btn"
+                                 download>
+
+                                 <i class="fa-solid fa-file-pdf"></i>
+
+                              </a>
+
+                              <!-- EXCEL -->
+                              <a href="export/report.xlsx"
+                                 class="action-btn"
+                                 download>
+
+                                 <i class="fa-solid fa-file-excel"></i>
+
+                              </a>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <!-- ITEM -->
+                     <tr>
+
+                        <td>
+
+                           <div class="product-table-info">
+
+                              <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
+
+                              <div>
+
+                                 <h6>
+                                    Customer Analytics Report
+                                 </h6>
+
+                                 <span>
+                                    REP-2026-002
+                                 </span>
+
+                              </div>
+
+                           </div>
+
+                        </td>
+
+                        <td>
+                           Customer
+                        </td>
+
+                        <td>
+                           08 May 2026
+                        </td>
+
+                        <td>
+                           Zack Walker
+                        </td>
+
+                        <td>
+
+                           <span class="badge-status badge-success">
+
+                              Ready
+
+                           </span>
+
+                        </td>
+
+                        <td>
+                           1.8 MB
+                        </td>
+
+                        <td>
+
+                           <div class="table-action">
+
+                              <!-- PDF -->
+                              <a href="export/customer-report.pdf"
+                                 class="action-btn"
+                                 download>
+
+                                 <i class="fa-solid fa-file-pdf"></i>
+
+                              </a>
+
+                              <!-- EXCEL -->
+                              <a href="export/customer-report.xlsx"
+                                 class="action-btn"
+                                 download>
+
+                                 <i class="fa-solid fa-file-excel"></i>
+
+                              </a>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <!-- ITEM -->
+                     <tr>
+
+                        <td>
+
+                           <div class="product-table-info">
+
+                              <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png">
+
+                              <div>
+
+                                 <h6>
+                                    Orders Performance Report
+                                 </h6>
+
+                                 <span>
+                                    REP-2026-003
+                                 </span>
+
+                              </div>
+
+                           </div>
+
+                        </td>
+
+                        <td>
+                           Orders
+                        </td>
+
+                        <td>
+                           07 May 2026
+                        </td>
+
+                        <td>
+                           Zack Walker
+                        </td>
+
+                        <td>
+
+                           <span class="badge-status badge-warning">
+
+                              Processing
+
+                           </span>
+
+                        </td>
+
+                        <td>
+                           3.1 MB
+                        </td>
+
+                        <td>
+
+                           <div class="table-action">
+
+                              <!-- PDF -->
+                              <a href="export/orders-report.pdf"
+                                 class="action-btn"
+                                 download>
+
+                                 <i class="fa-solid fa-file-pdf"></i>
+
+                              </a>
+
+                              <!-- EXCEL -->
+                              <a href="export/orders-report.xlsx"
+                                 class="action-btn"
+                                 download>
+
+                                 <i class="fa-solid fa-file-excel"></i>
+
+                              </a>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                  </tbody>
+
+               </table>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
+
+   <!-- FOOTER -->
+   <?php require 'partial/footer.php'; ?>
+
+   <!-- MOBILE NAV -->
+   <?php require 'partial/sidebar-mobile.php'; ?>
+
+</body>
+
+</html>
