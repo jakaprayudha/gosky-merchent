@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require '../config/config.php';
 
 header('Content-Type: application/json');
@@ -31,7 +33,7 @@ if (empty($login) || empty($password)) {
 
    echo json_encode([
 
-      'status' => 'error',
+      'status'  => 'error',
       'message' => 'Email / Phone dan password wajib diisi'
 
    ]);
@@ -47,19 +49,19 @@ if (empty($login) || empty($password)) {
 
 $query = $pdo->prepare("
 
-    SELECT *
-    FROM users
+   SELECT *
+   FROM users
 
-    WHERE
-    (
-        email = :email
-        OR
-        phone_number = :phone
-    )
+   WHERE
+   (
+      email = :email
+      OR
+      phone_number = :phone
+   )
 
-    AND deleted_at IS NULL
+   AND deleted_at IS NULL
 
-    LIMIT 1
+   LIMIT 1
 
 ");
 
@@ -69,7 +71,9 @@ $query->execute([
    'phone' => $login
 
 ]);
-$user = $query->fetch(PDO::FETCH_ASSOC);
+
+$user =
+   $query->fetch(PDO::FETCH_ASSOC);
 
 /*
 |--------------------------------------------------------------------------
@@ -81,7 +85,7 @@ if (!$user) {
 
    echo json_encode([
 
-      'status' => 'error',
+      'status'  => 'error',
       'message' => 'User tidak ditemukan'
 
    ]);
@@ -97,12 +101,15 @@ if (!$user) {
 
 if (
    empty($user['password']) ||
-   !password_verify($password, $user['password'])
+   !password_verify(
+      $password,
+      $user['password']
+   )
 ) {
 
    echo json_encode([
 
-      'status' => 'error',
+      'status'  => 'error',
       'message' => 'Password salah'
 
    ]);
@@ -112,21 +119,72 @@ if (
 
 /*
 |--------------------------------------------------------------------------
+| SESSION SECURITY
+|--------------------------------------------------------------------------
+*/
+
+session_regenerate_id(true);
+
+/*
+|--------------------------------------------------------------------------
 | SAVE SESSION
 |--------------------------------------------------------------------------
 */
 
 $_SESSION['login'] = true;
 
+/*
+|--------------------------------------------------------------------------
+| USER SESSION ARRAY
+|--------------------------------------------------------------------------
+*/
+
 $_SESSION['user'] = [
 
-   'id' => $user['id'],
-   'name' => $user['name'],
-   'email' => $user['email'],
-   'phone_number' => $user['phone_number'],
-   'role' => $user['role']
+   // =====================================
+   // BASIC
+   // =====================================
+   'id'            => $user['id'],
+   'name'          => $user['name'],
+   'email'         => $user['email'],
+   'phone_number'  => $user['phone_number'],
+   'role'          => $user['role'],
+
+   // =====================================
+   // OPTIONAL
+   // =====================================
+   'otp_code'      => $user['otp_code'],
+   'otp_expired'   => $user['otp_expired'],
+   'fcm_token'     => $user['fcm_token'],
+
+   // =====================================
+   // TIMESTAMP
+   // =====================================
+   'created_at'    => $user['created_at'],
+   'updated_at'    => $user['updated_at']
 
 ];
+
+/*
+|--------------------------------------------------------------------------
+| SHORT SESSION
+|--------------------------------------------------------------------------
+*/
+
+$_SESSION['user_id'] =
+   $user['id'];
+
+$_SESSION['name'] =
+   $user['name'];
+
+$_SESSION['email'] =
+   $user['email'];
+
+$_SESSION['role'] =
+   $user['role'];
+
+$_SESSION['phone'] =
+   $user['phone_number'];
 
 /*
 |--------------------------------------------------------------------------
@@ -136,12 +194,32 @@ $_SESSION['user'] = [
 
 $redirect = 'app/dashboard';
 
-if ($user['role'] === 'admin') {
+switch ($user['role']) {
 
-   $redirect = 'dashboard';
-} elseif ($user['role'] === 'driver') {
+   case 'admin':
 
-   $redirect = 'driver';
+      $redirect = 'app/dashboard';
+      break;
+
+   case 'merchent':
+
+      $redirect = 'app/dashboard';
+      break;
+
+   case 'driver':
+
+      $redirect = 'driver/dashboard';
+      break;
+
+   case 'customer':
+
+      $redirect = 'customer/dashboard';
+      break;
+
+   default:
+
+      $redirect = 'app/dashboard';
+      break;
 }
 
 /*
@@ -152,11 +230,21 @@ if ($user['role'] === 'admin') {
 
 echo json_encode([
 
-   'status' => 'success',
+   'status'   => 'success',
 
-   'message' =>
+   'message'  =>
    'Login berhasil, redirecting...',
 
-   'redirect' => $redirect
+   'redirect' => $redirect,
+
+   'user' => [
+
+      'id'           => $user['id'],
+      'name'         => $user['name'],
+      'email'        => $user['email'],
+      'phone_number' => $user['phone_number'],
+      'role'         => $user['role']
+
+   ]
 
 ]);

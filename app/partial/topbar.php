@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*
 |--------------------------------------------------------------------------
 | CURRENT PAGE
@@ -157,11 +157,11 @@ switch ($currentPage) {
          <div>
 
             <h6>
-               Zack Walker
+               <?= $_SESSION['user']['name'] ?>
             </h6>
 
             <span>
-               Administrator
+               <?= $_SESSION['user']['role'] ?>
             </span>
 
          </div>
