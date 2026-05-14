@@ -196,6 +196,29 @@
             </div>
 
          </div>
+         <!-- DATATABLE CSS -->
+         <link rel="stylesheet"
+            href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+
+         <style>
+            .dataTables_filter {
+               display: none !important;
+            }
+
+            .dataTables_length select {
+
+               border-radius: 12px !important;
+
+               padding: 6px 12px !important;
+
+            }
+
+            .dataTables_paginate .paginate_button {
+
+               border-radius: 10px !important;
+
+            }
+         </style>
 
          <!-- CUSTOMER TABLE -->
          <div class="content-card">
@@ -212,7 +235,9 @@
 
             <div class="table-responsive">
 
-               <table class="table-custom">
+               <table
+                  id="customerTable"
+                  class="table align-middle table-hover mb-0">
 
                   <thead>
 
@@ -225,7 +250,7 @@
                         <th>Total Spending</th>
                         <th>Status</th>
                         <th>Last Order</th>
-                        <th>Action</th>
+                        <th width="100">Action</th>
 
                      </tr>
 
@@ -238,18 +263,29 @@
 
                         <td>
 
-                           <div class="product-table-info">
+                           <div class="product-table-info d-flex align-items-center gap-3">
 
-                              <img src="https://i.pravatar.cc/120?img=11">
+                              <img
+                                 src="https://i.pravatar.cc/120?img=11"
+                                 style="
+                           width:55px;
+                           height:55px;
+                           border-radius:50%;
+                           object-fit:cover;
+                        ">
 
                               <div>
 
-                                 <h6>
+                                 <h6 class="mb-1">
+
                                     Michael Jordan
+
                                  </h6>
 
-                                 <span>
+                                 <span class="text-muted">
+
                                     Customer ID : #CUS-1024
+
                                  </span>
 
                               </div>
@@ -298,7 +334,7 @@
 
                         <td>
 
-                           <div class="table-action">
+                           <div class="table-action d-flex gap-2">
 
                               <button class="action-btn">
 
@@ -323,18 +359,29 @@
 
                         <td>
 
-                           <div class="product-table-info">
+                           <div class="product-table-info d-flex align-items-center gap-3">
 
-                              <img src="https://i.pravatar.cc/120?img=21">
+                              <img
+                                 src="https://i.pravatar.cc/120?img=21"
+                                 style="
+                           width:55px;
+                           height:55px;
+                           border-radius:50%;
+                           object-fit:cover;
+                        ">
 
                               <div>
 
-                                 <h6>
+                                 <h6 class="mb-1">
+
                                     Sarah Smith
+
                                  </h6>
 
-                                 <span>
+                                 <span class="text-muted">
+
                                     Customer ID : #CUS-1025
+
                                  </span>
 
                               </div>
@@ -383,7 +430,7 @@
 
                         <td>
 
-                           <div class="table-action">
+                           <div class="table-action d-flex gap-2">
 
                               <button class="action-btn">
 
@@ -408,18 +455,29 @@
 
                         <td>
 
-                           <div class="product-table-info">
+                           <div class="product-table-info d-flex align-items-center gap-3">
 
-                              <img src="https://i.pravatar.cc/120?img=31">
+                              <img
+                                 src="https://i.pravatar.cc/120?img=31"
+                                 style="
+                           width:55px;
+                           height:55px;
+                           border-radius:50%;
+                           object-fit:cover;
+                        ">
 
                               <div>
 
-                                 <h6>
+                                 <h6 class="mb-1">
+
                                     Daniel Walker
+
                                  </h6>
 
-                                 <span>
+                                 <span class="text-muted">
+
                                     Customer ID : #CUS-1026
+
                                  </span>
 
                               </div>
@@ -468,7 +526,7 @@
 
                         <td>
 
-                           <div class="table-action">
+                           <div class="table-action d-flex gap-2">
 
                               <button class="action-btn">
 
@@ -495,6 +553,66 @@
             </div>
 
          </div>
+
+         <!-- JQUERY -->
+         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+         <!-- DATATABLE -->
+         <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+         <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+
+         <script>
+            $(document).ready(function() {
+
+               // =====================================
+               // DATATABLE
+               // =====================================
+               const table = $('#customerTable').DataTable({
+
+                  responsive: true,
+
+                  pageLength: 5,
+
+                  lengthMenu: [
+                     [5, 10, 25, 50],
+                     [5, 10, 25, 50]
+                  ],
+
+                  // 🔥 HIDE DEFAULT SEARCH
+                  dom: '<"d-flex justify-content-between align-items-center mb-3"l>rt<"d-flex justify-content-between align-items-center mt-3"ip>',
+
+                  language: {
+
+                     lengthMenu: "Show _MENU_ entries",
+
+                     info: "Showing _START_ to _END_ of _TOTAL_ customers",
+
+                     paginate: {
+
+                        previous: '<i class="fa-solid fa-angle-left"></i>',
+
+                        next: '<i class="fa-solid fa-angle-right"></i>'
+
+                     },
+
+                     emptyTable: "No customers available"
+
+                  }
+
+               });
+
+               // =====================================
+               // CUSTOM SEARCH
+               // =====================================
+               $('.search-input').on('keyup', function() {
+
+                  table.search(this.value).draw();
+
+               });
+
+            });
+         </script>
 
       </div>
 

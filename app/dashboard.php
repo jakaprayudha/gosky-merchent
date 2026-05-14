@@ -46,22 +46,6 @@
                <div class="stats-card">
 
                   <div class="stats-icon">
-                     <i class="fa-solid fa-users"></i>
-                  </div>
-
-                  <h3>12.4K</h3>
-
-                  <p>Total Users</p>
-
-               </div>
-
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-
-               <div class="stats-card">
-
-                  <div class="stats-icon">
                      <i class="fa-solid fa-cart-shopping"></i>
                   </div>
 
@@ -89,7 +73,7 @@
 
             </div>
 
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-6 col-md-6">
 
                <div class="stats-card">
 
@@ -107,28 +91,29 @@
 
          </div>
 
+         <!-- DATATABLE CSS -->
+         <link rel="stylesheet"
+            href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+
          <!-- TABLE -->
          <div class="content-card">
 
-            <div class="card-header-custom">
+            <div class="card-header-custom d-flex
+      justify-content-between
+      align-items-center
+      flex-wrap gap-3">
 
-               <h4>
+               <h4 class="mb-0">
                   Recent Transactions
                </h4>
-
-               <button class="btn btn-primary-custom">
-
-                  <i class="fa-solid fa-plus me-2"></i>
-
-                  Add New
-
-               </button>
 
             </div>
 
             <div class="table-responsive">
 
-               <table class="table-custom">
+               <table
+                  id="transactionTable"
+                  class="table table-hover align-middle mb-0">
 
                   <thead>
 
@@ -140,7 +125,7 @@
                         <th>Status</th>
                         <th>Date</th>
                         <th>Amount</th>
-                        <th>Action</th>
+                        <th width="80">Action</th>
 
                      </tr>
 
@@ -151,13 +136,17 @@
                      <tr>
 
                         <td>#INV-1024</td>
+
                         <td>Michael Jordan</td>
+
                         <td>Premium Package</td>
 
                         <td>
 
                            <span class="badge-status badge-success">
+
                               Completed
+
                            </span>
 
                         </td>
@@ -181,13 +170,17 @@
                      <tr>
 
                         <td>#INV-1025</td>
+
                         <td>Sarah Smith</td>
+
                         <td>Enterprise Plan</td>
 
                         <td>
 
                            <span class="badge-status badge-warning">
+
                               Pending
+
                            </span>
 
                         </td>
@@ -211,13 +204,17 @@
                      <tr>
 
                         <td>#INV-1026</td>
+
                         <td>Daniel Walker</td>
+
                         <td>Starter Plan</td>
 
                         <td>
 
                            <span class="badge-status badge-danger">
+
                               Cancelled
+
                            </span>
 
                         </td>
@@ -225,6 +222,74 @@
                         <td>08 May 2026</td>
 
                         <td>$120</td>
+
+                        <td>
+
+                           <button class="action-btn">
+
+                              <i class="fa-solid fa-pen"></i>
+
+                           </button>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td>#INV-1027</td>
+
+                        <td>John Cena</td>
+
+                        <td>Business Plan</td>
+
+                        <td>
+
+                           <span class="badge-status badge-success">
+
+                              Completed
+
+                           </span>
+
+                        </td>
+
+                        <td>07 May 2026</td>
+
+                        <td>$760</td>
+
+                        <td>
+
+                           <button class="action-btn">
+
+                              <i class="fa-solid fa-pen"></i>
+
+                           </button>
+
+                        </td>
+
+                     </tr>
+
+                     <tr>
+
+                        <td>#INV-1028</td>
+
+                        <td>Emma Watson</td>
+
+                        <td>VIP Package</td>
+
+                        <td>
+
+                           <span class="badge-status badge-warning">
+
+                              Pending
+
+                           </span>
+
+                        </td>
+
+                        <td>06 May 2026</td>
+
+                        <td>$950</td>
 
                         <td>
 
@@ -246,6 +311,7 @@
 
          </div>
 
+
       </div>
 
    </div>
@@ -256,6 +322,53 @@
    <!-- MOBILE NAVIGATION -->
 
    <?php require 'partial/sidebar-mobile.php' ?>
+
 </body>
+<!-- JQUERY -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- DATATABLE -->
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+
+<script>
+   $(document).ready(function() {
+
+      $('#transactionTable').DataTable({
+
+         responsive: true,
+
+         pageLength: 5,
+
+         lengthMenu: [
+            [5, 10, 25, 50],
+            [5, 10, 25, 50]
+         ],
+
+         language: {
+
+            search: "",
+
+            searchPlaceholder: "Search transaction...",
+
+            lengthMenu: "Show _MENU_ entries",
+
+            info: "Showing _START_ to _END_ of _TOTAL_ entries",
+
+            paginate: {
+
+               previous: '<i class="fa-solid fa-angle-left"></i>',
+
+               next: '<i class="fa-solid fa-angle-right"></i>'
+
+            }
+
+         }
+
+      });
+
+   });
+</script>
 
 </html>

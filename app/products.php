@@ -23,7 +23,25 @@
    <!-- Custom CSS -->
    <link rel="stylesheet"
       href="assets/css/style.css">
+   <style>
+      .dataTables_filter {
+         display: none !important;
+      }
 
+      .dataTables_length select {
+
+         border-radius: 12px !important;
+
+         padding: 6px 12px !important;
+
+      }
+
+      .dataTables_paginate .paginate_button {
+
+         border-radius: 10px !important;
+
+      }
+   </style>
 </head>
 
 <body>
@@ -382,6 +400,9 @@
             </div>
 
          </div>
+         <!-- DATATABLE CSS -->
+         <link rel="stylesheet"
+            href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
 
          <!-- PRODUCT TABLE -->
          <div class="content-card mt-4 d-none"
@@ -389,7 +410,9 @@
 
             <div class="table-responsive">
 
-               <table class="table-custom">
+               <table
+                  id="productDataTable"
+                  class="table align-middle table-hover mb-0">
 
                   <thead>
 
@@ -401,7 +424,7 @@
                         <th>Stock</th>
                         <th>Status</th>
                         <th>Sales</th>
-                        <th>Action</th>
+                        <th width="100">Action</th>
 
                      </tr>
 
@@ -409,22 +432,34 @@
 
                   <tbody>
 
+                     <!-- PRODUCT -->
                      <tr>
 
                         <td>
 
-                           <div class="product-table-info">
+                           <div class="product-table-info d-flex align-items-center gap-3">
 
-                              <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300">
+                              <img
+                                 src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300"
+                                 style="
+                           width:60px;
+                           height:60px;
+                           object-fit:cover;
+                           border-radius:12px;
+                        ">
 
                               <div>
 
-                                 <h6>
+                                 <h6 class="mb-1">
+
                                     iPhone 15 Pro Max
+
                                  </h6>
 
-                                 <span>
+                                 <span class="text-muted">
+
                                     SKU-1024
+
                                  </span>
 
                               </div>
@@ -461,7 +496,175 @@
 
                         <td>
 
-                           <div class="table-action">
+                           <div class="table-action d-flex gap-2">
+
+                              <button class="action-btn">
+
+                                 <i class="fa-solid fa-pen"></i>
+
+                              </button>
+
+                              <button class="action-btn">
+
+                                 <i class="fa-solid fa-trash"></i>
+
+                              </button>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <!-- PRODUCT -->
+                     <tr>
+
+                        <td>
+
+                           <div class="product-table-info d-flex align-items-center gap-3">
+
+                              <img
+                                 src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=300"
+                                 style="
+                           width:60px;
+                           height:60px;
+                           object-fit:cover;
+                           border-radius:12px;
+                        ">
+
+                              <div>
+
+                                 <h6 class="mb-1">
+
+                                    Nike Air Jordan
+
+                                 </h6>
+
+                                 <span class="text-muted">
+
+                                    SKU-2048
+
+                                 </span>
+
+                              </div>
+
+                           </div>
+
+                        </td>
+
+                        <td>
+                           Fashion
+                        </td>
+
+                        <td>
+                           $420
+                        </td>
+
+                        <td>
+                           18
+                        </td>
+
+                        <td>
+
+                           <span class="badge-status badge-warning">
+
+                              Low Stock
+
+                           </span>
+
+                        </td>
+
+                        <td>
+                           850
+                        </td>
+
+                        <td>
+
+                           <div class="table-action d-flex gap-2">
+
+                              <button class="action-btn">
+
+                                 <i class="fa-solid fa-pen"></i>
+
+                              </button>
+
+                              <button class="action-btn">
+
+                                 <i class="fa-solid fa-trash"></i>
+
+                              </button>
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
+                     <!-- PRODUCT -->
+                     <tr>
+
+                        <td>
+
+                           <div class="product-table-info d-flex align-items-center gap-3">
+
+                              <img
+                                 src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=300"
+                                 style="
+                           width:60px;
+                           height:60px;
+                           object-fit:cover;
+                           border-radius:12px;
+                        ">
+
+                              <div>
+
+                                 <h6 class="mb-1">
+
+                                    Sony Headphone
+
+                                 </h6>
+
+                                 <span class="text-muted">
+
+                                    SKU-3099
+
+                                 </span>
+
+                              </div>
+
+                           </div>
+
+                        </td>
+
+                        <td>
+                           Electronics
+                        </td>
+
+                        <td>
+                           $199
+                        </td>
+
+                        <td>
+                           80
+                        </td>
+
+                        <td>
+
+                           <span class="badge-status badge-success">
+
+                              Active
+
+                           </span>
+
+                        </td>
+
+                        <td>
+                           430
+                        </td>
+
+                        <td>
+
+                           <div class="table-action d-flex gap-2">
 
                               <button class="action-btn">
 
@@ -488,6 +691,66 @@
             </div>
 
          </div>
+
+         <!-- JQUERY -->
+         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+         <!-- DATATABLE -->
+         <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+         <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+
+         <script>
+            $(document).ready(function() {
+
+               // =====================================
+               // INIT DATATABLE
+               // =====================================
+               const table = $('#productDataTable').DataTable({
+
+                  responsive: true,
+
+                  pageLength: 5,
+
+                  lengthMenu: [
+                     [5, 10, 25, 50],
+                     [5, 10, 25, 50]
+                  ],
+
+                  // 🔥 HIDE SEARCH DEFAULT
+                  dom: '<"d-flex justify-content-between align-items-center mb-3"l>rt<"d-flex justify-content-between align-items-center mt-3"ip>',
+
+                  language: {
+
+                     lengthMenu: "Show _MENU_ entries",
+
+                     info: "Showing _START_ to _END_ of _TOTAL_ products",
+
+                     paginate: {
+
+                        previous: '<i class="fa-solid fa-angle-left"></i>',
+
+                        next: '<i class="fa-solid fa-angle-right"></i>'
+
+                     },
+
+                     emptyTable: "No products available"
+
+                  }
+
+               });
+
+               // =====================================
+               // CUSTOM SEARCH
+               // =====================================
+               $('.search-input').on('keyup', function() {
+
+                  table.search(this.value).draw();
+
+               });
+
+            });
+         </script>
 
       </div>
 
