@@ -28,6 +28,33 @@
    <!-- Custom CSS -->
    <link rel="stylesheet"
       href="assets/css/style.css">
+   <style>
+      .table-scroll {
+
+         max-height: 500px;
+
+         overflow-y: auto;
+
+         overflow-x: auto;
+
+         border-radius: 16px;
+
+      }
+
+      .table-scroll thead th {
+
+         position: sticky;
+
+         top: 0;
+
+         z-index: 10;
+
+         background: #fff;
+
+         box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
+
+      }
+   </style>
 
 </head>
 
@@ -59,9 +86,7 @@
 
                   </div>
 
-                  <h3>
-                     $48.2K
-                  </h3>
+                  <h3 id="totalRevenue">Rp 0</h3>
 
                   <p>
                      Total Revenue
@@ -82,9 +107,7 @@
 
                   </div>
 
-                  <h3>
-                     8,420
-                  </h3>
+                  <h3 id="totalOrders">0</h3>
 
                   <p>
                      Total Orders
@@ -105,9 +128,7 @@
 
                   </div>
 
-                  <h3>
-                     12.4K
-                  </h3>
+                  <h3 id="totalCustomers">0</h3>
 
                   <p>
                      Total Customers
@@ -127,10 +148,7 @@
                      <i class="fa-solid fa-chart-line"></i>
 
                   </div>
-
-                  <h3>
-                     +18%
-                  </h3>
+                  <h3 id="monthlyGrowth">0%</h3>
 
                   <p>
                      Monthly Growth
@@ -147,16 +165,6 @@
 
             <div class="filter-wrapper">
 
-               <!-- SEARCH -->
-               <div class="search-box">
-
-                  <i class="fa-solid fa-magnifying-glass"></i>
-
-                  <input type="text"
-                     class="search-input"
-                     placeholder="Search analytics...">
-
-               </div>
 
                <!-- DATE -->
                <select class="filter-select">
@@ -282,7 +290,7 @@
 
             </div>
 
-            <div class="table-responsive">
+            <div class="table-responsive table-scroll">
 
                <table class="table-custom">
 
@@ -301,209 +309,7 @@
 
                   </thead>
 
-                  <tbody>
-
-                     <!-- ITEM -->
-                     <tr>
-
-                        <td>
-
-                           <div class="product-table-info">
-
-                              <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300">
-
-                              <div>
-
-                                 <h6>
-                                    iPhone 15 Pro Max
-                                 </h6>
-
-                                 <span>
-                                    SKU-1024
-                                 </span>
-
-                              </div>
-
-                           </div>
-
-                        </td>
-
-                        <td>
-                           Electronics
-                        </td>
-
-                        <td>
-
-                           <strong>
-                              1,240
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <strong>
-                              $84,200
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-success">
-
-                              +18%
-
-                           </span>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-success">
-
-                              Best Seller
-
-                           </span>
-
-                        </td>
-
-                     </tr>
-
-                     <!-- ITEM -->
-                     <tr>
-
-                        <td>
-
-                           <div class="product-table-info">
-
-                              <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=300">
-
-                              <div>
-
-                                 <h6>
-                                    Nike Air Jordan
-                                 </h6>
-
-                                 <span>
-                                    SKU-2048
-                                 </span>
-
-                              </div>
-
-                           </div>
-
-                        </td>
-
-                        <td>
-                           Fashion
-                        </td>
-
-                        <td>
-
-                           <strong>
-                              842
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <strong>
-                              $41,320
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-warning">
-
-                              +9%
-
-                           </span>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-warning">
-
-                              Trending
-
-                           </span>
-
-                        </td>
-
-                     </tr>
-
-                     <!-- ITEM -->
-                     <tr>
-
-                        <td>
-
-                           <div class="product-table-info">
-
-                              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=300">
-
-                              <div>
-
-                                 <h6>
-                                    Sony Headphone
-                                 </h6>
-
-                                 <span>
-                                    SKU-3091
-                                 </span>
-
-                              </div>
-
-                           </div>
-
-                        </td>
-
-                        <td>
-                           Audio
-                        </td>
-
-                        <td>
-
-                           <strong>
-                              420
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <strong>
-                              $18,920
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-danger">
-
-                              -2%
-
-                           </span>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-danger">
-
-                              Decrease
-
-                           </span>
-
-                        </td>
-
-                     </tr>
-
+                  <tbody id="topSellingBody">
                   </tbody>
 
                </table>
@@ -522,141 +328,358 @@
    <!-- MOBILE NAV -->
    <?php require 'partial/sidebar-mobile.php'; ?>
 
-   <!-- CHART SCRIPT -->
+
    <script>
-      /*
-      |--------------------------------------------------------------------------
-      | SALES CHART
-      |--------------------------------------------------------------------------
-      */
+      document.addEventListener(
+         'DOMContentLoaded',
+         loadAnalyticsDashboard
+      );
 
-      const salesOptions = {
+      function loadAnalyticsDashboard() {
 
-         chart: {
+         fetch(
+               '../controller/analyticsDashboardController.php'
+            )
+            .then(response => response.json())
+            .then(res => {
 
-            type: 'area',
-            height: 350,
-            toolbar: {
-               show: false
+               if (!res.success) return;
+
+               // STATS
+
+               document
+                  .getElementById('totalRevenue')
+                  .innerText =
+                  'Rp ' +
+                  Number(res.total_revenue)
+                  .toLocaleString('id-ID');
+
+               document
+                  .getElementById('totalOrders')
+                  .innerText =
+                  Number(res.total_orders)
+                  .toLocaleString('id-ID');
+
+               document
+                  .getElementById('totalCustomers')
+                  .innerText =
+                  Number(res.total_customers)
+                  .toLocaleString('id-ID');
+
+               document
+                  .getElementById('monthlyGrowth')
+                  .innerText =
+                  (res.monthly_growth > 0 ? '+' : '') +
+                  res.monthly_growth +
+                  '%';
+
+               renderSalesChart(res);
+
+               renderOrderChart(res);
+
+            });
+
+      }
+
+      function renderSalesChart(res) {
+
+         const salesOptions = {
+
+            chart: {
+
+               type: 'area',
+
+               height: 350,
+
+               toolbar: {
+                  show: false
+               }
+
+            },
+
+            series: [{
+
+               name: 'Revenue',
+
+               data: res.sales_data
+
+            }],
+
+            xaxis: {
+
+               categories: res.sales_labels
+
+            },
+
+            stroke: {
+
+               curve: 'smooth',
+
+               width: 4
+
+            },
+
+            colors: ['#f4c400'],
+
+            fill: {
+
+               type: 'gradient',
+
+               gradient: {
+
+                  shadeIntensity: 1,
+
+                  opacityFrom: 0.45,
+
+                  opacityTo: 0.05
+
+               }
+
+            },
+
+            dataLabels: {
+               enabled: false
+            },
+
+            grid: {
+               borderColor: '#f1f1f1'
             }
 
-         },
+         };
 
-         series: [{
-
-            name: 'Revenue',
-
-            data: [1200, 1800, 1400, 2200, 2800, 2600, 3400]
-
-         }],
-
-         xaxis: {
-
-            categories: [
-               'Mon',
-               'Tue',
-               'Wed',
-               'Thu',
-               'Fri',
-               'Sat',
-               'Sun'
-            ]
-
-         },
-
-         stroke: {
-
-            curve: 'smooth',
-            width: 4
-
-         },
-
-         colors: ['#f4c400'],
-
-         fill: {
-
-            type: 'gradient',
-
-            gradient: {
-
-               shadeIntensity: 1,
-               opacityFrom: 0.45,
-               opacityTo: 0.05
-
-            }
-
-         },
-
-         dataLabels: {
-            enabled: false
-         },
-
-         grid: {
-
-            borderColor: '#f1f1f1'
-
-         }
-
-      };
-
-      const salesChart =
          new ApexCharts(
             document.querySelector("#salesChart"),
             salesOptions
-         );
+         ).render();
 
-      salesChart.render();
+      }
 
-      /*
-      |--------------------------------------------------------------------------
-      | ORDER CHART
-      |--------------------------------------------------------------------------
-      */
+      function renderOrderChart(res) {
 
-      const orderOptions = {
+         const orderOptions = {
 
-         chart: {
+            chart: {
 
-            type: 'donut',
-            height: 350
+               type: 'donut',
 
-         },
+               height: 350
 
-         series: [64, 24, 12],
+            },
 
-         labels: [
-            'Completed',
-            'Processing',
-            'Cancelled'
-         ],
+            series: res.order_status,
 
-         colors: [
-            '#19be6b',
-            '#f4c400',
-            '#ff4d4f'
-         ],
+            labels: [
 
-         legend: {
+               'Completed',
 
-            position: 'bottom'
+               'Processing',
 
-         },
+               'Cancelled'
 
-         dataLabels: {
-            enabled: false
-         }
+            ],
 
-      };
+            colors: [
 
-      const orderChart =
+               '#19be6b',
+
+               '#f4c400',
+
+               '#ff4d4f'
+
+            ],
+
+            legend: {
+
+               position: 'bottom'
+
+            },
+
+            dataLabels: {
+
+               enabled: false
+
+            }
+
+         };
+
          new ApexCharts(
             document.querySelector("#orderChart"),
             orderOptions
-         );
+         ).render();
 
-      orderChart.render();
+      }
    </script>
+   <script>
+      document.addEventListener(
+         'DOMContentLoaded',
+         loadTopSellingProducts
+      );
 
+      function loadTopSellingProducts() {
+
+         fetch(
+               '../controller/topSellingProductsController.php'
+            )
+            .then(response => response.json())
+            .then(res => {
+
+               let html = '';
+
+               if (
+                  res.success &&
+                  res.data.length > 0
+               ) {
+
+                  res.data.forEach(
+                     (item, index) => {
+
+                        let imageUrl =
+                           item.image_url &&
+                           item.image_url !== '' ?
+                           item.image_url :
+                           'assets/images/404.png';
+
+                        let status =
+                           'Normal';
+
+                        let badge =
+                           'badge-success';
+
+                        if (index === 0) {
+
+                           status =
+                              'Best Seller';
+
+                        } else if (index <= 2) {
+
+                           status =
+                              'Trending';
+
+                           badge =
+                              'badge-warning';
+
+                        }
+
+                        html += `
+
+                <tr>
+
+                    <td>
+
+                        <div class="product-table-info">
+
+                            <img
+                                src="${imageUrl}"
+                                onerror="
+                                this.src='assets/images/404.png'
+                                ">
+
+                            <div>
+
+                                <h6>
+
+                                    ${item.name}
+
+                                </h6>
+
+                                <span>
+
+                                    ID-${item.id}
+
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                    <td>
+
+                        ${item.category_name ?? '-'}
+
+                    </td>
+
+                    <td>
+
+                        <strong>
+
+                            ${Number(
+                                item.total_orders
+                            ).toLocaleString('id-ID')}
+
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        <strong>
+
+                            Rp ${Number(
+                                item.revenue
+                            ).toLocaleString('id-ID')}
+
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="badge-status badge-success">
+
+                            +${(
+                                (item.total_orders / 10)
+                            ).toFixed(1)}%
+
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <span
+                            class="badge-status ${badge}">
+
+                            ${status}
+
+                        </span>
+
+                    </td>
+
+                </tr>
+
+                `;
+                     });
+
+               } else {
+
+                  html = `
+            <tr>
+                <td colspan="6"
+                    class="text-center">
+                    No Data Found
+                </td>
+            </tr>
+            `;
+               }
+
+               document
+                  .getElementById(
+                     'topSellingBody'
+                  )
+                  .innerHTML = html;
+
+            })
+            .catch(error => {
+
+               console.error(error);
+
+            });
+
+      }
+   </script>
 </body>
 
 </html>
