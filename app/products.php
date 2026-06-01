@@ -19,7 +19,8 @@
    <!-- Google Font -->
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet">
-
+   <link rel="stylesheet"
+      href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
    <!-- Custom CSS -->
    <link rel="stylesheet"
       href="assets/css/style.css">
@@ -40,6 +41,33 @@
 
          border-radius: 10px !important;
 
+      }
+
+      .skeleton {
+         position: relative;
+         overflow: hidden;
+         background: #e9ecef;
+         border-radius: 12px;
+      }
+
+      .skeleton::after {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: -150px;
+         width: 150px;
+         height: 100%;
+         background: linear-gradient(90deg,
+               transparent,
+               rgba(255, 255, 255, .7),
+               transparent);
+         animation: shimmer 1.2s infinite;
+      }
+
+      @keyframes shimmer {
+         100% {
+            left: 100%;
+         }
       }
    </style>
 </head>
@@ -73,9 +101,7 @@
 
                   </div>
 
-                  <h3>
-                     248
-                  </h3>
+                  <h3 id="totalProducts">0</h3>
 
                   <p>
                      Total Products
@@ -96,9 +122,7 @@
 
                   </div>
 
-                  <h3>
-                     220
-                  </h3>
+                  <h3 id="activeProducts">0</h3>
 
                   <p>
                      Active Product
@@ -119,9 +143,8 @@
 
                   </div>
 
-                  <h3>
-                     18
-                  </h3>
+                  <h3 id="lowStock">0</h3>
+
 
                   <p>
                      Low Stock
@@ -142,9 +165,7 @@
 
                   </div>
 
-                  <h3>
-                     10
-                  </h3>
+                  <h3 id="hiddenProducts">0</h3>
 
                   <p>
                      Hidden Product
@@ -173,22 +194,12 @@
                </div>
 
                <!-- CATEGORY -->
-               <select class="filter-select">
+               <select
+                  id="categoryFilter"
+                  class="filter-select">
 
-                  <option>
+                  <option value="">
                      All Category
-                  </option>
-
-                  <option>
-                     Electronics
-                  </option>
-
-                  <option>
-                     Fashion
-                  </option>
-
-                  <option>
-                     Furniture
                   </option>
 
                </select>
@@ -226,183 +237,10 @@
          </div>
 
          <!-- PRODUCT GRID -->
-         <div class="row g-4"
-            id="productGrid">
-
-            <!-- PRODUCT -->
-            <div class="col-lg-4 col-md-6">
-
-               <div class="product-card">
-
-                  <div class="product-image">
-
-                     <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop">
-
-                     <div class="product-badge">
-
-                        Best Seller
-
-                     </div>
-
-                  </div>
-
-                  <div class="product-body">
-
-                     <div class="product-category">
-
-                        Electronics
-
-                     </div>
-
-                     <div class="product-name">
-
-                        iPhone 15 Pro Max
-
-                     </div>
-
-                     <div class="product-desc">
-
-                        Premium flagship smartphone with titanium design.
-
-                     </div>
-
-                     <div class="product-meta">
-
-                        <div class="product-price">
-
-                           <h4>
-                              $1,299
-                           </h4>
-
-                           <span>
-                              Per Unit
-                           </span>
-
-                        </div>
-
-                        <div class="stock-box">
-
-                           In Stock
-
-                        </div>
-
-                     </div>
-
-                     <div class="product-footer">
-
-                        <button class="btn-product btn-edit">
-
-                           <i class="fa-solid fa-pen me-2"></i>
-
-                           Edit
-
-                        </button>
-
-                        <button class="btn-product btn-view">
-
-                           <i class="fa-solid fa-eye me-2"></i>
-
-                           View
-
-                        </button>
-
-                     </div>
-
-                  </div>
-
-               </div>
-
-            </div>
-
-            <!-- PRODUCT -->
-            <div class="col-lg-4 col-md-6">
-
-               <div class="product-card">
-
-                  <div class="product-image">
-
-                     <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop">
-
-                     <div class="product-badge">
-
-                        Trending
-
-                     </div>
-
-                  </div>
-
-                  <div class="product-body">
-
-                     <div class="product-category">
-
-                        Fashion
-
-                     </div>
-
-                     <div class="product-name">
-
-                        Nike Air Jordan
-
-                     </div>
-
-                     <div class="product-desc">
-
-                        Modern sneakers with premium comfort.
-
-                     </div>
-
-                     <div class="product-meta">
-
-                        <div class="product-price">
-
-                           <h4>
-                              $420
-                           </h4>
-
-                           <span>
-                              Per Pair
-                           </span>
-
-                        </div>
-
-                        <div class="stock-box stock-low">
-
-                           Low Stock
-
-                        </div>
-
-                     </div>
-
-                     <div class="product-footer">
-
-                        <button class="btn-product btn-edit">
-
-                           <i class="fa-solid fa-pen me-2"></i>
-
-                           Edit
-
-                        </button>
-
-                        <button class="btn-product btn-view">
-
-                           <i class="fa-solid fa-eye me-2"></i>
-
-                           View
-
-                        </button>
-
-                     </div>
-
-                  </div>
-
-               </div>
-
-            </div>
-
+         <div class="row g-4" id="productGrid">
          </div>
          <!-- DATATABLE CSS -->
-         <link rel="stylesheet"
-            href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+
 
          <!-- PRODUCT TABLE -->
          <div class="content-card mt-4 d-none"
@@ -430,260 +268,7 @@
 
                   </thead>
 
-                  <tbody>
-
-                     <!-- PRODUCT -->
-                     <tr>
-
-                        <td>
-
-                           <div class="product-table-info d-flex align-items-center gap-3">
-
-                              <img
-                                 src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=300"
-                                 style="
-                           width:60px;
-                           height:60px;
-                           object-fit:cover;
-                           border-radius:12px;
-                        ">
-
-                              <div>
-
-                                 <h6 class="mb-1">
-
-                                    iPhone 15 Pro Max
-
-                                 </h6>
-
-                                 <span class="text-muted">
-
-                                    SKU-1024
-
-                                 </span>
-
-                              </div>
-
-                           </div>
-
-                        </td>
-
-                        <td>
-                           Electronics
-                        </td>
-
-                        <td>
-                           $1,299
-                        </td>
-
-                        <td>
-                           120
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-success">
-
-                              Active
-
-                           </span>
-
-                        </td>
-
-                        <td>
-                           1.2K
-                        </td>
-
-                        <td>
-
-                           <div class="table-action d-flex gap-2">
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-pen"></i>
-
-                              </button>
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-trash"></i>
-
-                              </button>
-
-                           </div>
-
-                        </td>
-
-                     </tr>
-
-                     <!-- PRODUCT -->
-                     <tr>
-
-                        <td>
-
-                           <div class="product-table-info d-flex align-items-center gap-3">
-
-                              <img
-                                 src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=300"
-                                 style="
-                           width:60px;
-                           height:60px;
-                           object-fit:cover;
-                           border-radius:12px;
-                        ">
-
-                              <div>
-
-                                 <h6 class="mb-1">
-
-                                    Nike Air Jordan
-
-                                 </h6>
-
-                                 <span class="text-muted">
-
-                                    SKU-2048
-
-                                 </span>
-
-                              </div>
-
-                           </div>
-
-                        </td>
-
-                        <td>
-                           Fashion
-                        </td>
-
-                        <td>
-                           $420
-                        </td>
-
-                        <td>
-                           18
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-warning">
-
-                              Low Stock
-
-                           </span>
-
-                        </td>
-
-                        <td>
-                           850
-                        </td>
-
-                        <td>
-
-                           <div class="table-action d-flex gap-2">
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-pen"></i>
-
-                              </button>
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-trash"></i>
-
-                              </button>
-
-                           </div>
-
-                        </td>
-
-                     </tr>
-
-                     <!-- PRODUCT -->
-                     <tr>
-
-                        <td>
-
-                           <div class="product-table-info d-flex align-items-center gap-3">
-
-                              <img
-                                 src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=300"
-                                 style="
-                           width:60px;
-                           height:60px;
-                           object-fit:cover;
-                           border-radius:12px;
-                        ">
-
-                              <div>
-
-                                 <h6 class="mb-1">
-
-                                    Sony Headphone
-
-                                 </h6>
-
-                                 <span class="text-muted">
-
-                                    SKU-3099
-
-                                 </span>
-
-                              </div>
-
-                           </div>
-
-                        </td>
-
-                        <td>
-                           Electronics
-                        </td>
-
-                        <td>
-                           $199
-                        </td>
-
-                        <td>
-                           80
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-success">
-
-                              Active
-
-                           </span>
-
-                        </td>
-
-                        <td>
-                           430
-                        </td>
-
-                        <td>
-
-                           <div class="table-action d-flex gap-2">
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-pen"></i>
-
-                              </button>
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-trash"></i>
-
-                              </button>
-
-                           </div>
-
-                        </td>
-
-                     </tr>
-
+                  <tbody id="productTableBody">
                   </tbody>
 
                </table>
@@ -700,57 +285,7 @@
 
          <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
 
-         <script>
-            $(document).ready(function() {
 
-               // =====================================
-               // INIT DATATABLE
-               // =====================================
-               const table = $('#productDataTable').DataTable({
-
-                  responsive: true,
-
-                  pageLength: 5,
-
-                  lengthMenu: [
-                     [5, 10, 25, 50],
-                     [5, 10, 25, 50]
-                  ],
-
-                  // 🔥 HIDE SEARCH DEFAULT
-                  dom: '<"d-flex justify-content-between align-items-center mb-3"l>rt<"d-flex justify-content-between align-items-center mt-3"ip>',
-
-                  language: {
-
-                     lengthMenu: "Show _MENU_ entries",
-
-                     info: "Showing _START_ to _END_ of _TOTAL_ products",
-
-                     paginate: {
-
-                        previous: '<i class="fa-solid fa-angle-left"></i>',
-
-                        next: '<i class="fa-solid fa-angle-right"></i>'
-
-                     },
-
-                     emptyTable: "No products available"
-
-                  }
-
-               });
-
-               // =====================================
-               // CUSTOM SEARCH
-               // =====================================
-               $('.search-input').on('keyup', function() {
-
-                  table.search(this.value).draw();
-
-               });
-
-            });
-         </script>
 
       </div>
 
@@ -1049,6 +584,453 @@ PRODUCT MODAL
 </body>
 <!-- BOOTSTRAP JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+   fetch('../controller/productDashboardController.php')
+      .then(response => response.json())
+      .then(res => {
+
+         if (!res.success) return;
+
+         document.getElementById('totalProducts').innerText =
+            res.total_products.toLocaleString('id-ID');
+
+         document.getElementById('activeProducts').innerText =
+            res.active_products.toLocaleString('id-ID');
+
+         document.getElementById('lowStock').innerText =
+            res.low_stock.toLocaleString('id-ID');
+
+         document.getElementById('hiddenProducts').innerText =
+            res.hidden_products.toLocaleString('id-ID');
+      });
+</script>
+
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+
+      loadCategories();
+
+   });
+
+   function loadCategories() {
+
+      fetch('../controller/menuCategoryController.php')
+         .then(response => response.json())
+         .then(res => {
+
+            if (!res.success) return;
+
+            let html = `
+                <option value="">
+                    All Category
+                </option>
+            `;
+
+            res.data.forEach(category => {
+
+               html += `
+                    <option value="${category.id}">
+                        ${category.name}
+                    </option>
+                `;
+
+            });
+
+            document.getElementById('categoryFilter').innerHTML = html;
+
+         })
+         .catch(error => {
+
+            console.error(error);
+
+         });
+   }
+</script>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+
+      loadProducts();
+      loadProductTable();
+
+      document
+         .getElementById('categoryFilter')
+         .addEventListener('change', function() {
+
+            loadProducts(this.value);
+            loadProductTable(this.value);
+
+         });
+
+   });
+
+   function loadProducts(categoryId = '') {
+      showGridSkeleton();
+      let url = '../controller/productController.php';
+
+      if (categoryId) {
+         url += '?category_id=' + categoryId;
+      }
+
+      fetch(url)
+         .then(response => response.json())
+         .then(res => {
+
+            setTimeout(() => {
+
+               // render data
+
+            }, 500);
+
+
+            let html = '';
+
+            if (res.success && res.data.length > 0) {
+
+               res.data.forEach(item => {
+
+                  let imageUrl =
+                     item.image_url && item.image_url !== '' ?
+                     item.image_url :
+                     '../app/assets/images/404.png';
+
+                  html += `
+                        <div class="col-lg-4 col-md-6">
+
+                            <div class="product-card">
+
+                                <div class="product-image">
+
+                                    <img src="${imageUrl}">
+
+                                    <div class="product-badge">
+                                        Product
+                                    </div>
+
+                                </div>
+
+                                <div class="product-body">
+
+                                    <div class="product-category">
+                                        ${item.category_name ?? '-'}
+                                    </div>
+
+                                    <div class="product-name">
+                                        ${item.name}
+                                    </div>
+
+                                    <div class="product-desc">
+                                        Menu Restaurant
+                                    </div>
+
+                                    <div class="product-meta">
+
+                                        <div class="product-price">
+
+                                            <h4>
+                                                Rp ${Number(item.price).toLocaleString('id-ID')}
+                                            </h4>
+
+                                            <span>
+                                                Per Item
+                                            </span>
+
+                                        </div>
+
+                                        <div class="stock-box">
+                                            Active
+                                        </div>
+
+                                    </div>
+
+                                    <div class="product-footer">
+
+                                        <button
+                                            class="btn-product btn-edit"
+                                            onclick="editProduct(${item.id})">
+
+                                            <i class="fa-solid fa-pen me-2"></i>
+
+                                            Edit
+
+                                        </button>
+
+                                        <button
+                                            class="btn-product btn-view"
+                                            onclick="viewProduct(${item.id})">
+
+                                            <i class="fa-solid fa-eye me-2"></i>
+
+                                            View
+
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    `;
+               });
+
+            } else {
+
+               html = `
+                    <div class="col-12">
+
+                        <div class="alert alert-warning text-center">
+
+                            No Product Found
+
+                        </div>
+
+                    </div>
+                `;
+            }
+
+            document.getElementById('productGrid').innerHTML = html;
+
+         })
+         .catch(error => {
+
+            console.error(error);
+
+            document.getElementById('productGrid').innerHTML = `
+                     <div class="col-12">
+
+                        <div class="alert alert-danger text-center">
+
+                              Failed Load Product
+
+                        </div>
+
+                     </div>
+                  `;
+
+         });
+
+   }
+
+   function editProduct(id) {
+
+      window.location.href =
+         'product-edit.php?id=' + id;
+
+   }
+
+   function viewProduct(id) {
+
+      window.location.href =
+         'product-view.php?id=' + id;
+
+   }
+</script>
+<script>
+   function loadProductTable(categoryId = '') {
+      showTableSkeleton();
+      let url = '../controller/productController.php';
+
+      if (categoryId) {
+         url += '?category_id=' + categoryId;
+      }
+
+      fetch(url)
+         .then(response => response.json())
+         .then(res => {
+
+            setTimeout(() => {
+
+               // render data
+
+            }, 500);
+
+
+            let html = '';
+
+            if (res.success && res.data.length > 0) {
+
+               res.data.forEach(item => {
+
+                  let imageUrl =
+                     item.image_url?.trim() ?
+                     item.image_url :
+                     'assets/images/no-image.png';
+
+                  let badgeClass = 'badge-success';
+                  let statusText = 'Active';
+
+                  html += `
+                    <tr>
+
+                        <td>
+
+                            <div class="product-table-info d-flex align-items-center gap-3">
+
+                                <img
+                                    src="${imageUrl}"
+                                    onerror="this.src='assets/images/404.png'"
+                                    style="
+                                        width:60px;
+                                        height:60px;
+                                        object-fit:cover;
+                                        border-radius:12px;
+                                    ">
+
+                                <div>
+
+                                    <h6 class="mb-1">
+                                        ${item.name}
+                                    </h6>
+
+                                    <span class="text-muted">
+                                        ID-${item.id}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+                            ${item.category_name ?? '-'}
+                        </td>
+
+                        <td>
+                            Rp ${Number(item.price).toLocaleString('id-ID')}
+                        </td>
+
+                        <td>
+                            -
+                        </td>
+
+                        <td>
+
+                            <span class="badge-status ${badgeClass}">
+                                ${statusText}
+                            </span>
+
+                        </td>
+
+                        <td>
+                            -
+                        </td>
+
+                        <td>
+
+                            <div class="table-action d-flex gap-2">
+
+                                <button
+                                    class="action-btn"
+                                    onclick="editProduct(${item.id})">
+
+                                    <i class="fa-solid fa-pen"></i>
+
+                                </button>
+
+                                <button
+                                    class="action-btn"
+                                    onclick="deleteProduct(${item.id})">
+
+                                    <i class="fa-solid fa-trash"></i>
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+                    `;
+               });
+
+            } else {
+
+               html = `
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            No Product Found
+                        </td>
+                    </tr>
+                `;
+            }
+
+            $('#productTableBody').html(html);
+
+            if ($.fn.DataTable.isDataTable('#productDataTable')) {
+               $('#productDataTable').DataTable().destroy();
+            }
+            let table = $('#productDataTable').DataTable({
+               responsive: true,
+               pageLength: 10
+            });
+
+            $('.search-input')
+               .off('keyup')
+               .on('keyup', function() {
+
+                  table.search(this.value).draw();
+
+               });
+
+         })
+         .catch(error => {
+
+            console.error(error);
+
+            $('#productTableBody').html(`
+                <tr>
+                    <td colspan="7" class="text-center text-danger">
+                        Failed Load Product
+                    </td>
+                </tr>
+            `);
+
+         });
+
+   }
+
+   document.querySelector('.search-input')
+      .addEventListener('keyup', function() {
+
+         const keyword = this.value.toLowerCase();
+
+         document
+            .querySelectorAll('#productGrid .product-card')
+            .forEach(card => {
+
+               const text =
+                  card.innerText.toLowerCase();
+
+               card.parentElement.style.display =
+                  text.includes(keyword) ?
+                  '' :
+                  'none';
+
+            });
+
+      });
+
+   function editProduct(id) {
+
+      window.location.href =
+         'product-edit.php?id=' + id;
+
+   }
+
+   function deleteProduct(id) {
+
+      if (!confirm('Delete this product?')) {
+         return;
+      }
+
+      console.log('Delete Product', id);
+
+   }
+</script>
+
 <script>
    document.addEventListener('DOMContentLoaded', () => {
 
@@ -1093,6 +1075,103 @@ PRODUCT MODAL
          });
 
    });
+
+   function showGridSkeleton() {
+
+      let html = '';
+
+      for (let i = 0; i < 6; i++) {
+
+         html += `
+        <div class="col-lg-4 col-md-6">
+
+            <div class="product-card">
+
+                <div
+                    class="skeleton"
+                    style="height:220px;">
+                </div>
+
+                <div class="p-3">
+
+                    <div
+                        class="skeleton mb-2"
+                        style="height:15px;width:100px;">
+                    </div>
+
+                    <div
+                        class="skeleton mb-2"
+                        style="height:20px;">
+                    </div>
+
+                    <div
+                        class="skeleton"
+                        style="height:15px;width:80%;">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        `;
+      }
+
+      document.getElementById('productGrid').innerHTML = html;
+   }
+
+   function showTableSkeleton() {
+
+      let html = '';
+
+      for (let i = 0; i < 8; i++) {
+
+         html += `
+        <tr>
+
+            <td>
+                <div class="d-flex gap-3 align-items-center">
+
+                    <div
+                        class="skeleton"
+                        style="
+                            width:60px;
+                            height:60px;
+                            border-radius:12px;">
+                    </div>
+
+                    <div style="width:150px">
+
+                        <div
+                            class="skeleton mb-2"
+                            style="height:16px;">
+                        </div>
+
+                        <div
+                            class="skeleton"
+                            style="
+                                height:12px;
+                                width:70%;">
+                        </div>
+
+                    </div>
+
+                </div>
+            </td>
+
+            <td><div class="skeleton" style="height:15px"></div></td>
+            <td><div class="skeleton" style="height:15px"></div></td>
+            <td><div class="skeleton" style="height:15px"></div></td>
+            <td><div class="skeleton" style="height:15px"></div></td>
+            <td><div class="skeleton" style="height:15px"></div></td>
+            <td><div class="skeleton" style="height:35px"></div></td>
+
+        </tr>
+        `;
+      }
+
+      $('#productTableBody').html(html);
+   }
 </script>
 
 </html>
