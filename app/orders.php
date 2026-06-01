@@ -56,9 +56,7 @@
 
                   </div>
 
-                  <h3>
-                     1,248
-                  </h3>
+                  <h3 id="totalOrders">0</h3>
 
                   <p>
                      Total Orders
@@ -79,9 +77,7 @@
 
                   </div>
 
-                  <h3>
-                     84
-                  </h3>
+                  <h3 id="processingOrders">0</h3>
 
                   <p>
                      Processing
@@ -102,9 +98,7 @@
 
                   </div>
 
-                  <h3>
-                     1,002
-                  </h3>
+                  <h3 id="completedOrders">0</h3>
 
                   <p>
                      Completed
@@ -125,9 +119,7 @@
 
                   </div>
 
-                  <h3>
-                     52
-                  </h3>
+                  <h3 id="cancelledOrders">0</h3>
 
                   <p>
                      Cancelled
@@ -156,42 +148,46 @@
                </div>
 
                <!-- STATUS -->
-               <select class="filter-select">
+               <select
+                  id="statusFilter"
+                  class="filter-select">
 
-                  <option>
+                  <option value="">
                      All Status
                   </option>
 
-                  <option>
-                     Pending
-                  </option>
-
-                  <option>
+                  <option value="Processing">
                      Processing
                   </option>
 
-                  <option>
+                  <option value="Completed">
                      Completed
                   </option>
 
-                  <option>
+                  <option value="Cancelled">
                      Cancelled
                   </option>
 
                </select>
 
                <!-- DATE -->
-               <select class="filter-select">
+               <select
+                  id="dateFilter"
+                  class="filter-select">
 
-                  <option>
+                  <option value="">
+                     All Date
+                  </option>
+
+                  <option value="today">
                      Today
                   </option>
 
-                  <option>
+                  <option value="week">
                      This Week
                   </option>
 
-                  <option>
+                  <option value="month">
                      This Month
                   </option>
 
@@ -261,314 +257,7 @@
 
                   </thead>
 
-                  <tbody>
-
-                     <!-- ORDER -->
-                     <tr>
-
-                        <td>
-
-                           <strong>
-                              #ORD-1024
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <div class="product-table-info d-flex align-items-center gap-3">
-
-                              <img
-                                 src="https://i.pravatar.cc/120?img=12"
-                                 style="
-                           width:55px;
-                           height:55px;
-                           border-radius:50%;
-                           object-fit:cover;
-                        ">
-
-                              <div>
-
-                                 <h6 class="mb-1">
-
-                                    Michael Jordan
-
-                                 </h6>
-
-                                 <span class="text-muted">
-
-                                    michael@mail.com
-
-                                 </span>
-
-                              </div>
-
-                           </div>
-
-                        </td>
-
-                        <td>
-                           4 Items
-                        </td>
-
-                        <td>
-
-                           <strong>
-                              $420
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-warning">
-
-                              Processing
-
-                           </span>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-success">
-
-                              Paid
-
-                           </span>
-
-                        </td>
-
-                        <td>
-                           09 May 2026
-                        </td>
-
-                        <td>
-
-                           <div class="table-action d-flex gap-2">
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-eye"></i>
-
-                              </button>
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-print"></i>
-
-                              </button>
-
-                           </div>
-
-                        </td>
-
-                     </tr>
-
-                     <!-- ORDER -->
-                     <tr>
-
-                        <td>
-
-                           <strong>
-                              #ORD-1025
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <div class="product-table-info d-flex align-items-center gap-3">
-
-                              <img
-                                 src="https://i.pravatar.cc/120?img=22"
-                                 style="
-                           width:55px;
-                           height:55px;
-                           border-radius:50%;
-                           object-fit:cover;
-                        ">
-
-                              <div>
-
-                                 <h6 class="mb-1">
-
-                                    Sarah Smith
-
-                                 </h6>
-
-                                 <span class="text-muted">
-
-                                    sarah@mail.com
-
-                                 </span>
-
-                              </div>
-
-                           </div>
-
-                        </td>
-
-                        <td>
-                           2 Items
-                        </td>
-
-                        <td>
-
-                           <strong>
-                              $189
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-success">
-
-                              Completed
-
-                           </span>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-success">
-
-                              Paid
-
-                           </span>
-
-                        </td>
-
-                        <td>
-                           09 May 2026
-                        </td>
-
-                        <td>
-
-                           <div class="table-action d-flex gap-2">
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-eye"></i>
-
-                              </button>
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-print"></i>
-
-                              </button>
-
-                           </div>
-
-                        </td>
-
-                     </tr>
-
-                     <!-- ORDER -->
-                     <tr>
-
-                        <td>
-
-                           <strong>
-                              #ORD-1026
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <div class="product-table-info d-flex align-items-center gap-3">
-
-                              <img
-                                 src="https://i.pravatar.cc/120?img=32"
-                                 style="
-                           width:55px;
-                           height:55px;
-                           border-radius:50%;
-                           object-fit:cover;
-                        ">
-
-                              <div>
-
-                                 <h6 class="mb-1">
-
-                                    Daniel Walker
-
-                                 </h6>
-
-                                 <span class="text-muted">
-
-                                    daniel@mail.com
-
-                                 </span>
-
-                              </div>
-
-                           </div>
-
-                        </td>
-
-                        <td>
-                           1 Item
-                        </td>
-
-                        <td>
-
-                           <strong>
-                              $89
-                           </strong>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-danger">
-
-                              Cancelled
-
-                           </span>
-
-                        </td>
-
-                        <td>
-
-                           <span class="badge-status badge-warning">
-
-                              Refund
-
-                           </span>
-
-                        </td>
-
-                        <td>
-                           08 May 2026
-                        </td>
-
-                        <td>
-
-                           <div class="table-action d-flex gap-2">
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-eye"></i>
-
-                              </button>
-
-                              <button class="action-btn">
-
-                                 <i class="fa-solid fa-print"></i>
-
-                              </button>
-
-                           </div>
-
-                        </td>
-
-                     </tr>
-
+                  <tbody id="ordersTableBody">
                   </tbody>
 
                </table>
@@ -577,65 +266,7 @@
 
          </div>
 
-         <!-- JQUERY -->
-         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-         <!-- DATATABLE -->
-         <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
-
-         <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
-
-         <script>
-            $(document).ready(function() {
-
-               // =====================================
-               // DATATABLE
-               // =====================================
-               const table = $('#ordersTable').DataTable({
-
-                  responsive: true,
-
-                  pageLength: 5,
-
-                  lengthMenu: [
-                     [5, 10, 25, 50],
-                     [5, 10, 25, 50]
-                  ],
-
-                  // 🔥 HIDE DEFAULT SEARCH
-                  dom: '<"d-flex justify-content-between align-items-center mb-3"l>rt<"d-flex justify-content-between align-items-center mt-3"ip>',
-
-                  language: {
-
-                     lengthMenu: "Show _MENU_ entries",
-
-                     info: "Showing _START_ to _END_ of _TOTAL_ orders",
-
-                     paginate: {
-
-                        previous: '<i class="fa-solid fa-angle-left"></i>',
-
-                        next: '<i class="fa-solid fa-angle-right"></i>'
-
-                     },
-
-                     emptyTable: "No orders available"
-
-                  }
-
-               });
-
-               // =====================================
-               // CUSTOM SEARCH
-               // =====================================
-               $('.search-input').on('keyup', function() {
-
-                  table.search(this.value).draw();
-
-               });
-
-            });
-         </script>
 
       </div>
 
@@ -646,7 +277,490 @@
 
    <!-- MOBILE NAVIGATION -->
    <?php require 'partial/sidebar-mobile.php'; ?>
+   <div
+      class="modal fade"
+      id="orderDetailModal"
+      tabindex="-1">
 
+      <div class="modal-dialog modal-xl">
+
+         <div class="modal-content">
+
+            <div class="modal-header">
+
+               <h5 class="modal-title">
+
+                  Order Detail
+
+               </h5>
+
+               <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal">
+               </button>
+
+            </div>
+
+            <div class="modal-body">
+
+               <div id="orderDetailContent">
+
+                  <div class="text-center py-5">
+
+                     <div
+                        class="spinner-border text-primary">
+                     </div>
+
+                  </div>
+
+               </div>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
 </body>
+<!-- JQUERY -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<!-- DATATABLE -->
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+
+      loadOrderDashboard();
+
+   });
+
+   function loadOrderDashboard() {
+
+      fetch('../controller/orderDashboardController.php')
+         .then(response => response.json())
+         .then(res => {
+
+            if (!res.success) {
+
+               console.error(res.message);
+
+               return;
+            }
+
+            document
+               .getElementById('totalOrders')
+               .innerText =
+               Number(res.total_orders)
+               .toLocaleString('id-ID');
+
+            document
+               .getElementById('processingOrders')
+               .innerText =
+               Number(res.processing_orders)
+               .toLocaleString('id-ID');
+
+            document
+               .getElementById('completedOrders')
+               .innerText =
+               Number(res.completed_orders)
+               .toLocaleString('id-ID');
+
+            document
+               .getElementById('cancelledOrders')
+               .innerText =
+               Number(res.cancelled_orders)
+               .toLocaleString('id-ID');
+
+         })
+         .catch(error => {
+
+            console.error(error);
+
+         });
+
+   }
+</script>
+
+<script>
+   $(document).ready(function() {
+
+      loadOrders();
+
+   });
+
+   function loadOrders() {
+
+      fetch('../controller/ordersCustomerController.php')
+         .then(response => response.json())
+         .then(res => {
+
+            let html = '';
+
+            if (res.success && res.data.length > 0) {
+
+               res.data.forEach(item => {
+
+                  let orderStatus = '';
+                  let paymentStatus = '';
+
+                  switch (item.status) {
+
+                     case 'delivered':
+
+                        orderStatus =
+                           '<span class="badge-status badge-success">Completed</span>';
+
+                        paymentStatus =
+                           '<span class="badge-status badge-success">Paid</span>';
+
+                        break;
+
+                     case 'cancelled':
+                     case 'rejected':
+
+                        orderStatus =
+                           '<span class="badge-status badge-danger">Cancelled</span>';
+
+                        paymentStatus =
+                           '<span class="badge-status badge-warning">Refund</span>';
+
+                        break;
+
+                     default:
+
+                        orderStatus =
+                           '<span class="badge-status badge-warning">Processing</span>';
+
+                        paymentStatus =
+                           '<span class="badge-status badge-success">Paid</span>';
+
+                  }
+
+                  const amount =
+                     Number(item.total_amount || 0)
+                     .toLocaleString('id-ID');
+
+                  const date =
+                     new Date(item.created_at)
+                     .toLocaleDateString(
+                        'id-ID', {
+                           day: '2-digit',
+                           month: 'short',
+                           year: 'numeric'
+                        }
+                     );
+
+                  html += `
+                    <tr>
+
+                        <td>
+                            <strong>
+                                #ORD-${item.id}
+                            </strong>
+                        </td>
+
+                        <td>
+
+                            <div class="product-table-info d-flex align-items-center gap-3">
+
+                                <img
+                                    src="../app/assets/images/profile-customer.png"
+                                    style="
+                                        width:55px;
+                                        height:55px;
+                                        border-radius:50%;
+                                        object-fit:cover;
+                                    ">
+
+                                <div>
+
+                                    <h6 class="mb-1">
+
+                                        ${item.customer_name ?? '-'}
+
+                                    </h6>
+
+                                    <span class="text-muted">
+
+                                        ${item.customer_email ?? '-'}
+
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+                        <td>
+
+                            ${item.total_items ?? 0} Items
+
+                        </td>
+
+                        <td>
+
+                            <strong>
+
+                                Rp ${amount}
+
+                            </strong>
+
+                        </td>
+
+                        <td>
+
+                            ${orderStatus}
+
+                        </td>
+
+                        <td>
+
+                            ${paymentStatus}
+
+                        </td>
+
+                        <td>
+
+                            ${date}
+
+                        </td>
+
+                        <td>
+
+                            <div class="table-action d-flex gap-2">
+
+                                <button
+                                    class="action-btn"
+                                    onclick="viewOrder(${item.id})">
+
+                                    <i class="fa-solid fa-eye"></i>
+
+                                </button>
+
+                                <button
+                                    class="action-btn"
+                                    onclick="printOrder(${item.id})">
+
+                                    <i class="fa-solid fa-print"></i>
+
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+                    `;
+               });
+
+            } else {
+
+               html = `
+                <tr>
+                    <td colspan="8" class="text-center">
+                        No Orders Found
+                    </td>
+                </tr>
+                `;
+            }
+
+            $('#ordersTableBody').html(html);
+
+            if ($.fn.DataTable.isDataTable('#ordersTable')) {
+
+               $('#ordersTable')
+                  .DataTable()
+                  .destroy();
+
+            }
+
+            let table = $('#ordersTable').DataTable({
+
+               responsive: true,
+
+               pageLength: 10,
+
+               language: {
+
+                  search: "",
+
+                  searchPlaceholder: "Search Order..."
+
+               }
+
+            });
+
+            // SEARCH CUSTOM
+            $('.search-input')
+               .off('keyup')
+               .on('keyup', function() {
+
+                  table.search(this.value).draw();
+
+               });
+
+            $('#statusFilter')
+               .off('change')
+               .on('change', function() {
+
+                  const value = $(this).val();
+
+                  table.column(4).search(value).draw();
+
+               });
+
+         })
+         .catch(error => {
+
+            console.error(error);
+
+         });
+
+   }
+
+   function viewOrder(id) {
+
+      const modal = new bootstrap.Modal(
+         document.getElementById('orderDetailModal')
+      );
+
+      modal.show();
+
+      $('#orderDetailContent').html(`
+      <div class="text-center py-5">
+         <div class="spinner-border text-primary"></div>
+      </div>
+   `);
+
+      fetch(
+            '../controller/orderDetailController.php?order_id=' + id
+         )
+         .then(response => response.json())
+         .then(res => {
+
+            if (!res.success) {
+
+               $('#orderDetailContent').html(`
+            <div class="alert alert-danger">
+               Failed load order detail
+            </div>
+         `);
+
+               return;
+            }
+
+            let rows = '';
+            let grandTotal = 0;
+
+            res.data.forEach(item => {
+
+               const subtotal =
+                  Number(item.quantity) *
+                  Number(item.price);
+
+               grandTotal += subtotal;
+
+               rows += `
+            <tr>
+
+               <td>${item.menu_name}</td>
+
+               <td>${item.quantity}</td>
+
+               <td>
+                  Rp ${Number(item.price)
+                     .toLocaleString('id-ID')}
+               </td>
+
+               <td>
+                  Rp ${subtotal
+                     .toLocaleString('id-ID')}
+               </td>
+
+            </tr>
+         `;
+            });
+
+            $('#orderDetailContent').html(`
+
+         <div class="mb-3">
+
+            <h5>
+               Order #ORD-${id}
+            </h5>
+
+         </div>
+
+         <div class="table-responsive">
+
+            <table class="table table-bordered">
+
+               <thead>
+
+                  <tr>
+
+                     <th>Menu</th>
+                     <th width="100">Qty</th>
+                     <th width="150">Price</th>
+                     <th width="150">Subtotal</th>
+
+                  </tr>
+
+               </thead>
+
+               <tbody>
+
+                  ${rows}
+
+               </tbody>
+
+            </table>
+
+         </div>
+
+         <div class="text-end mt-3">
+
+            <h4 class="fw-bold">
+
+               Total :
+               Rp ${grandTotal.toLocaleString('id-ID')}
+
+            </h4>
+
+         </div>
+
+      `);
+
+         })
+         .catch(error => {
+
+            console.error(error);
+
+            $('#orderDetailContent').html(`
+         <div class="alert alert-danger">
+            Failed load order detail
+         </div>
+      `);
+
+         });
+
+   }
+
+   function printOrder(id) {
+
+      window.open(
+         'order-print.php?id=' + id,
+         '_blank'
+      );
+
+   }
+</script>
+
 
 </html>
