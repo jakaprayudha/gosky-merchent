@@ -54,6 +54,90 @@
          box-shadow: 0 1px 0 rgba(0, 0, 0, .05);
 
       }
+
+      .skeleton {
+
+         position: relative;
+
+         overflow: hidden;
+
+         background: #e9ecef !important;
+
+         color: transparent !important;
+
+         border-radius: 8px;
+
+      }
+
+      .skeleton::after {
+
+         content: '';
+
+         position: absolute;
+
+         top: 0;
+         left: -150px;
+
+         width: 150px;
+         height: 100%;
+
+         background: linear-gradient(90deg,
+               transparent,
+               rgba(255, 255, 255, .7),
+               transparent);
+
+         animation: shimmer 1.2s infinite;
+
+      }
+
+      @keyframes shimmer {
+
+         100% {
+            left: 100%;
+         }
+
+      }
+
+      .chart-skeleton {
+
+         height: 350px;
+
+         border-radius: 16px;
+
+         background: #f3f4f6;
+
+         position: relative;
+
+         overflow: hidden;
+
+      }
+
+      .chart-skeleton::after {
+
+         content: '';
+
+         position: absolute;
+
+         top: 0;
+         left: -200px;
+
+         width: 200px;
+         height: 100%;
+
+         background: linear-gradient(90deg,
+               transparent,
+               rgba(255, 255, 255, .8),
+               transparent);
+
+         animation: shimmer 1.3s infinite;
+
+      }
+
+      .table-skeleton td {
+
+         height: 70px;
+
+      }
    </style>
 
 </head>
@@ -86,7 +170,7 @@
 
                   </div>
 
-                  <h3 id="totalRevenue">Rp 0</h3>
+                  <h3 class="skeleton" id="totalRevenue">Rp 0</h3>
 
                   <p>
                      Total Revenue
@@ -107,7 +191,7 @@
 
                   </div>
 
-                  <h3 id="totalOrders">0</h3>
+                  <h3 class="skeleton" id="totalOrders">0</h3>
 
                   <p>
                      Total Orders
@@ -128,7 +212,7 @@
 
                   </div>
 
-                  <h3 id="totalCustomers">0</h3>
+                  <h3 class="skeleton" id="totalCustomers">0</h3>
 
                   <p>
                      Total Customers
@@ -148,7 +232,7 @@
                      <i class="fa-solid fa-chart-line"></i>
 
                   </div>
-                  <h3 id="monthlyGrowth">0%</h3>
+                  <h3 class="skeleton" id="monthlyGrowth">0%</h3>
 
                   <p>
                      Monthly Growth
@@ -166,29 +250,30 @@
             <div class="filter-wrapper">
 
 
-               <!-- DATE -->
-               <select class="filter-select">
+               <select
+                  id="periodFilter"
+                  class="filter-select">
 
-                  <option>
+                  <option value="7">
                      Last 7 Days
                   </option>
 
-                  <option>
+                  <option value="30">
                      Last 30 Days
                   </option>
 
-                  <option>
+                  <option value="180">
                      Last 6 Months
                   </option>
 
-                  <option>
+                  <option value="365">
                      This Year
                   </option>
 
                </select>
 
                <!-- EXPORT -->
-               <button class="btn-primary-custom">
+               <button class="btn-primary-custom" id="btnExport">
 
                   <i class="fa-solid fa-file-export me-2"></i>
 
@@ -228,7 +313,15 @@
 
                   </div>
 
-                  <div id="salesChart"></div>
+                  <div
+                     id="salesChartSkeleton"
+                     class="chart-skeleton">
+                  </div>
+
+                  <div
+                     id="salesChart"
+                     style="display:none;">
+                  </div>
 
                </div>
 
@@ -259,7 +352,15 @@
 
                   </div>
 
-                  <div id="orderChart"></div>
+                  <div
+                     id="orderChartSkeleton"
+                     class="chart-skeleton">
+                  </div>
+
+                  <div
+                     id="orderChart"
+                     style="display:none;">
+                  </div>
 
                </div>
 
@@ -310,6 +411,49 @@
                   </thead>
 
                   <tbody id="topSellingBody">
+
+                     <tr class="table-skeleton">
+
+                        <td>
+                           <div class="skeleton" style="height:50px"></div>
+                        </td>
+
+                        <td>
+                           <div class="skeleton" style="height:20px"></div>
+                        </td>
+
+                        <td>
+                           <div class="skeleton" style="height:20px"></div>
+                        </td>
+
+                        <td>
+                           <div class="skeleton" style="height:20px"></div>
+                        </td>
+
+                        <td>
+                           <div class="skeleton" style="height:20px"></div>
+                        </td>
+
+                        <td>
+                           <div class="skeleton" style="height:20px"></div>
+                        </td>
+
+                     </tr>
+
+                     <tr class="table-skeleton">
+
+                        <td colspan="6">
+
+                           <div
+                              class="skeleton"
+                              style="height:60px">
+
+                           </div>
+
+                        </td>
+
+                     </tr>
+
                   </tbody>
 
                </table>
@@ -342,6 +486,22 @@
             )
             .then(response => response.json())
             .then(res => {
+
+               document
+                  .getElementById('totalRevenue')
+                  .classList.remove('skeleton');
+
+               document
+                  .getElementById('totalOrders')
+                  .classList.remove('skeleton');
+
+               document
+                  .getElementById('totalCustomers')
+                  .classList.remove('skeleton');
+
+               document
+                  .getElementById('monthlyGrowth')
+                  .classList.remove('skeleton');
 
                if (!res.success) return;
 
@@ -382,7 +542,17 @@
       }
 
       function renderSalesChart(res) {
+         document
+            .getElementById(
+               'salesChartSkeleton'
+            )
+            .style.display = 'none';
 
+         document
+            .getElementById(
+               'salesChart'
+            )
+            .style.display = 'block';
          const salesOptions = {
 
             chart: {
@@ -455,6 +625,17 @@
       }
 
       function renderOrderChart(res) {
+         document
+            .getElementById(
+               'orderChartSkeleton'
+            )
+            .style.display = 'none';
+
+         document
+            .getElementById(
+               'orderChart'
+            )
+            .style.display = 'block';
 
          const orderOptions = {
 
