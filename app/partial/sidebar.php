@@ -97,7 +97,7 @@ function activeMenu($page)
    </a>
 
    <!-- CUSTOMERS -->
-   <a href="customers"
+   <!-- <a href="customers"
       class="menu-item <?= activeMenu('customers') ?>">
 
       <i class="fa-solid fa-users"></i>
@@ -106,7 +106,7 @@ function activeMenu($page)
          Customers
       </span>
 
-   </a>
+   </a> -->
 
    <!-- ANALYTICS -->
    <a href="analytics"

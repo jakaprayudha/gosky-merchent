@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0">
 
    <title>Products Management</title>
-
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
    <!-- Bootstrap -->
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet">
@@ -213,7 +213,7 @@
                </div>
 
                <!-- ADD -->
-               <button class="btn btn-primary-custom">
+               <button class="btn btn-primary-custom" id="btnAddProduct">
 
                   <i class="fa-solid fa-plus me-2"></i>
 
@@ -811,7 +811,288 @@
 
    <!-- MOBILE NAVIGATION -->
    <?php require 'partial/sidebar-mobile.php'; ?>
+   <!-- =========================================
+PRODUCT MODAL
+========================================= -->
+   <div class="modal fade"
+      id="productModal"
+      tabindex="-1">
 
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+
+         <div class="modal-content border-0 shadow-lg rounded-4">
+
+            <!-- HEADER -->
+            <div class="modal-header border-0 pb-0">
+
+               <div>
+
+                  <h4 class="fw-bold mb-1">
+
+                     Add New Product
+
+                  </h4>
+
+                  <p class="text-muted mb-0">
+
+                     Create your new product item
+
+                  </p>
+
+               </div>
+
+               <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal">
+               </button>
+
+            </div>
+
+            <!-- BODY -->
+            <div class="modal-body p-4">
+
+               <form id="productForm">
+
+                  <div class="row g-4">
+
+                     <!-- PRODUCT IMAGE -->
+                     <div class="col-12">
+
+                        <label class="form-label fw-semibold">
+
+                           Product Image
+
+                        </label>
+
+                        <input
+                           type="file"
+                           class="form-control"
+                           accept="image/*">
+
+                     </div>
+
+                     <!-- PRODUCT NAME -->
+                     <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                           Product Name
+
+                        </label>
+
+                        <input
+                           type="text"
+                           class="form-control"
+                           placeholder="Enter product name">
+
+                     </div>
+
+                     <!-- CATEGORY -->
+                     <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                           Category
+
+                        </label>
+
+                        <select class="form-select">
+
+                           <option>
+                              Select Category
+                           </option>
+
+                           <option>
+                              Electronics
+                           </option>
+
+                           <option>
+                              Fashion
+                           </option>
+
+                           <option>
+                              Furniture
+                           </option>
+
+                        </select>
+
+                     </div>
+
+                     <!-- PRICE -->
+                     <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                           Price
+
+                        </label>
+
+                        <input
+                           type="number"
+                           class="form-control"
+                           placeholder="0">
+
+                     </div>
+
+                     <!-- STOCK -->
+                     <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                           Stock
+
+                        </label>
+
+                        <input
+                           type="number"
+                           class="form-control"
+                           placeholder="0">
+
+                     </div>
+
+                     <!-- DESCRIPTION -->
+                     <div class="col-12">
+
+                        <label class="form-label fw-semibold">
+
+                           Description
+
+                        </label>
+
+                        <textarea
+                           class="form-control"
+                           rows="4"
+                           placeholder="Write product description..."></textarea>
+
+                     </div>
+
+                     <!-- STATUS -->
+                     <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                           Product Status
+
+                        </label>
+
+                        <select class="form-select">
+
+                           <option>
+                              Active
+                           </option>
+
+                           <option>
+                              Draft
+                           </option>
+
+                           <option>
+                              Hidden
+                           </option>
+
+                        </select>
+
+                     </div>
+
+                     <!-- SKU -->
+                     <div class="col-md-6">
+
+                        <label class="form-label fw-semibold">
+
+                           SKU
+
+                        </label>
+
+                        <input
+                           type="text"
+                           class="form-control"
+                           placeholder="SKU-1024">
+
+                     </div>
+
+                  </div>
+
+               </form>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div class="modal-footer border-0 pt-0 px-4 pb-4">
+
+               <button
+                  type="button"
+                  class="btn btn-light rounded-pill px-4"
+                  data-bs-dismiss="modal">
+
+                  Cancel
+
+               </button>
+
+               <button
+                  type="submit"
+                  form="productForm"
+                  class="btn btn-primary-custom rounded-pill px-4">
+
+                  <i class="fa-solid fa-floppy-disk me-2"></i>
+
+                  Save Product
+
+               </button>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
 </body>
+<!-- BOOTSTRAP JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+
+      // =====================================
+      // MODAL INSTANCE
+      // =====================================
+      const productModal = new bootstrap.Modal(
+
+         document.getElementById('productModal')
+
+      );
+
+      // =====================================
+      // OPEN MODAL
+      // =====================================
+      document
+         .getElementById('btnAddProduct')
+
+         .addEventListener('click', () => {
+
+            productModal.show();
+
+         });
+
+      // =====================================
+      // SUBMIT FORM
+      // =====================================
+      document
+         .getElementById('productForm')
+
+         .addEventListener('submit', function(e) {
+
+            e.preventDefault();
+
+            // DEMO ALERT
+            alert('Product saved successfully 🚀');
+
+            productModal.hide();
+
+            this.reset();
+
+         });
+
+   });
+</script>
 
 </html>
