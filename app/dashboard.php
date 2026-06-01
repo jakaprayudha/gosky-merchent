@@ -49,7 +49,7 @@
                      <i class="fa-solid fa-cart-shopping"></i>
                   </div>
 
-                  <h3>8.2K</h3>
+                  <h3 id="totalOrders">0</h3>
 
                   <p>Total Orders</p>
 
@@ -65,7 +65,7 @@
                      <i class="fa-solid fa-wallet"></i>
                   </div>
 
-                  <h3>$48K</h3>
+                  <h3 id="totalRevenue">Rp 0</h3>
 
                   <p>Total Revenue</p>
 
@@ -81,7 +81,7 @@
                      <i class="fa-solid fa-chart-line"></i>
                   </div>
 
-                  <h3>89%</h3>
+                  <h3 id="growthRate">0%</h3>
 
                   <p>Growth Rate</p>
 
@@ -99,9 +99,9 @@
          <div class="content-card">
 
             <div class="card-header-custom d-flex
-      justify-content-between
-      align-items-center
-      flex-wrap gap-3">
+                        justify-content-between
+                        align-items-center
+                        flex-wrap gap-3">
 
                <h4 class="mb-0">
                   Recent Transactions
@@ -131,178 +131,7 @@
 
                   </thead>
 
-                  <tbody>
-
-                     <tr>
-
-                        <td>#INV-1024</td>
-
-                        <td>Michael Jordan</td>
-
-                        <td>Premium Package</td>
-
-                        <td>
-
-                           <span class="badge-status badge-success">
-
-                              Completed
-
-                           </span>
-
-                        </td>
-
-                        <td>09 May 2026</td>
-
-                        <td>$420</td>
-
-                        <td>
-
-                           <button class="action-btn">
-
-                              <i class="fa-solid fa-pen"></i>
-
-                           </button>
-
-                        </td>
-
-                     </tr>
-
-                     <tr>
-
-                        <td>#INV-1025</td>
-
-                        <td>Sarah Smith</td>
-
-                        <td>Enterprise Plan</td>
-
-                        <td>
-
-                           <span class="badge-status badge-warning">
-
-                              Pending
-
-                           </span>
-
-                        </td>
-
-                        <td>09 May 2026</td>
-
-                        <td>$850</td>
-
-                        <td>
-
-                           <button class="action-btn">
-
-                              <i class="fa-solid fa-pen"></i>
-
-                           </button>
-
-                        </td>
-
-                     </tr>
-
-                     <tr>
-
-                        <td>#INV-1026</td>
-
-                        <td>Daniel Walker</td>
-
-                        <td>Starter Plan</td>
-
-                        <td>
-
-                           <span class="badge-status badge-danger">
-
-                              Cancelled
-
-                           </span>
-
-                        </td>
-
-                        <td>08 May 2026</td>
-
-                        <td>$120</td>
-
-                        <td>
-
-                           <button class="action-btn">
-
-                              <i class="fa-solid fa-pen"></i>
-
-                           </button>
-
-                        </td>
-
-                     </tr>
-
-                     <tr>
-
-                        <td>#INV-1027</td>
-
-                        <td>John Cena</td>
-
-                        <td>Business Plan</td>
-
-                        <td>
-
-                           <span class="badge-status badge-success">
-
-                              Completed
-
-                           </span>
-
-                        </td>
-
-                        <td>07 May 2026</td>
-
-                        <td>$760</td>
-
-                        <td>
-
-                           <button class="action-btn">
-
-                              <i class="fa-solid fa-pen"></i>
-
-                           </button>
-
-                        </td>
-
-                     </tr>
-
-                     <tr>
-
-                        <td>#INV-1028</td>
-
-                        <td>Emma Watson</td>
-
-                        <td>VIP Package</td>
-
-                        <td>
-
-                           <span class="badge-status badge-warning">
-
-                              Pending
-
-                           </span>
-
-                        </td>
-
-                        <td>06 May 2026</td>
-
-                        <td>$950</td>
-
-                        <td>
-
-                           <button class="action-btn">
-
-                              <i class="fa-solid fa-pen"></i>
-
-                           </button>
-
-                        </td>
-
-                     </tr>
-
+                  <tbody id="transactionTableBody">
                   </tbody>
 
                </table>
@@ -322,7 +151,67 @@
    <!-- MOBILE NAVIGATION -->
 
    <?php require 'partial/sidebar-mobile.php' ?>
+   <div class="modal fade" id="orderDetailModal" tabindex="-1">
 
+      <div class="modal-dialog modal-lg">
+
+         <div class="modal-content">
+
+            <div class="modal-header">
+
+               <h5 class="modal-title">
+                  Detail Order
+               </h5>
+
+               <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal">
+               </button>
+
+            </div>
+
+            <div class="modal-body">
+
+               <table class="table table-bordered">
+
+                  <thead>
+
+                     <tr>
+                        <th>Menu</th>
+                        <th width="120">Qty</th>
+                        <th width="150">Price</th>
+                        <th width="150">Subtotal</th>
+                     </tr>
+
+                  </thead>
+
+                  <tbody id="orderDetailBody">
+
+                  </tbody>
+
+                  <tfoot>
+
+                     <tr>
+                        <th colspan="3" class="text-end">
+                           Total
+                        </th>
+                        <th id="orderGrandTotal">
+                           Rp 0
+                        </th>
+                     </tr>
+
+                  </tfoot>
+
+               </table>
+
+            </div>
+
+         </div>
+
+      </div>
+
+   </div>
 </body>
 <!-- JQUERY -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -332,43 +221,233 @@
 
 <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+   fetch('../controller/dashboardController.php')
+      .then(response => response.json())
+      .then(res => {
+
+         document.getElementById('totalOrders').innerText =
+            res.total_orders.toLocaleString();
+
+         document.getElementById('totalRevenue').innerText =
+            'Rp ' + res.total_revenue.toLocaleString('id-ID');
+
+         document.getElementById('growthRate').innerText =
+            res.growth_rate + '%';
+
+      });
+</script>
+
 <script>
    $(document).ready(function() {
 
-      $('#transactionTable').DataTable({
+      loadLatestOrders();
 
-         responsive: true,
+      function loadLatestOrders() {
 
-         pageLength: 5,
+         fetch('../controller/ordersCustomerController.php')
+            .then(response => response.json())
+            .then(res => {
 
-         lengthMenu: [
-            [5, 10, 25, 50],
-            [5, 10, 25, 50]
-         ],
+               let html = '';
 
-         language: {
+               if (res.success && res.data.length > 0) {
 
-            search: "",
+                  res.data.forEach(item => {
 
-            searchPlaceholder: "Search transaction...",
+                     let badgeClass = '';
 
-            lengthMenu: "Show _MENU_ entries",
+                     switch (item.status) {
 
-            info: "Showing _START_ to _END_ of _TOTAL_ entries",
+                        case 'delivered':
+                           badgeClass = 'badge-success';
+                           break;
 
-            paginate: {
+                        case 'waiting':
+                        case 'searching':
+                        case 'accepted':
+                        case 'on_the_way':
+                           badgeClass = 'badge-warning';
+                           break;
 
-               previous: '<i class="fa-solid fa-angle-left"></i>',
+                        case 'cancelled':
+                        case 'rejected':
+                           badgeClass = 'badge-danger';
+                           break;
 
-               next: '<i class="fa-solid fa-angle-right"></i>'
+                        default:
+                           badgeClass = 'badge-secondary';
+                     }
 
-            }
+                     const amount = Number(item.total_amount || 0)
+                        .toLocaleString('id-ID');
 
-         }
+                     const date = new Date(item.created_at)
+                        .toLocaleDateString('id-ID', {
+                           day: '2-digit',
+                           month: 'short',
+                           year: 'numeric'
+                        });
 
-      });
+                     html += `
+                            <tr>
+                                <td>#ORD-${item.id}</td>
+
+                                <td>${item.customer_name ?? '-'}</td>
+
+                                <td>${item.restaurant_name ?? item.type}</td>
+
+                                <td>
+                                    <span class="badge-status ${badgeClass}">
+                                        ${item.status}
+                                    </span>
+                                </td>
+
+                                <td>${date}</td>
+
+                                <td>Rp ${amount}</td>
+
+                               <td>
+                                    <button
+                                       class="action-btn"
+                                       onclick="viewOrder(${item.id})">
+
+                                       <i class="fa-solid fa-eye"></i>
+
+                                    </button>
+                                 </td>
+                            </tr>
+                        `;
+                  });
+
+               } else {
+
+                  html = `
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                No data found
+                            </td>
+                        </tr>
+                    `;
+               }
+
+               $('#transactionTableBody').html(html);
+
+               // Destroy jika sudah pernah dibuat
+               if ($.fn.DataTable.isDataTable('#transactionTable')) {
+                  $('#transactionTable').DataTable().destroy();
+               }
+
+               $('#transactionTable').DataTable({
+                  responsive: true,
+                  pageLength: 5,
+                  lengthMenu: [
+                     [5, 10, 25, 50],
+                     [5, 10, 25, 50]
+                  ],
+                  language: {
+                     search: "",
+                     searchPlaceholder: "Search transaction...",
+                     lengthMenu: "Show _MENU_ entries",
+                     info: "Showing _START_ to _END_ of _TOTAL_ entries",
+                     paginate: {
+                        previous: '<i class="fa-solid fa-angle-left"></i>',
+                        next: '<i class="fa-solid fa-angle-right"></i>'
+                     }
+                  }
+               });
+
+            })
+            .catch(error => {
+
+               console.error(error);
+
+               $('#transactionTableBody').html(`
+                    <tr>
+                        <td colspan="7" class="text-center text-danger">
+                            Failed to load data
+                        </td>
+                    </tr>
+                `);
+            });
+      }
 
    });
+
+   function viewOrder(orderId) {
+
+      fetch(
+            `../controller/orderDetailController.php?order_id=${orderId}`
+         )
+         .then(response => response.json())
+         .then(res => {
+
+            let html = '';
+            let grandTotal = 0;
+
+            if (res.success) {
+
+               res.data.forEach(item => {
+
+                  const subtotal =
+                     parseInt(item.quantity) *
+                     parseInt(item.price);
+
+                  grandTotal += subtotal;
+
+                  html += `
+                    <tr>
+                        <td>${item.menu_name}</td>
+                        <td>${item.quantity}</td>
+                        <td>
+                            Rp ${Number(item.price)
+                                .toLocaleString('id-ID')}
+                        </td>
+                        <td>
+                            Rp ${Number(subtotal)
+                                .toLocaleString('id-ID')}
+                        </td>
+                    </tr>
+                `;
+               });
+
+            } else {
+
+               html = `
+                <tr>
+                    <td colspan="4" class="text-center">
+                        No data found
+                    </td>
+                </tr>
+            `;
+            }
+
+            document.getElementById(
+               'orderDetailBody'
+            ).innerHTML = html;
+
+            document.getElementById(
+                  'orderGrandTotal'
+               ).innerHTML =
+               'Rp ' +
+               grandTotal.toLocaleString('id-ID');
+
+            new bootstrap.Modal(
+               document.getElementById('orderDetailModal')
+            ).show();
+
+         })
+         .catch(error => {
+
+            console.error(error);
+
+            alert('Failed load detail order');
+
+         });
+
+   }
 </script>
 
 </html>
