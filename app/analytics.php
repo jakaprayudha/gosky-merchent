@@ -245,7 +245,7 @@
          </div>
 
          <!-- FILTER -->
-         <div class="page-header">
+         <div class="row g-2">
 
             <div class="filter-wrapper">
 
@@ -369,7 +369,7 @@
          </div>
 
          <!-- TABLE -->
-         <div class="content-card mt-4">
+         <div class="content-card mt-6">
 
             <div class="card-header-custom">
 
