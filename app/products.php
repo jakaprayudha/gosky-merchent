@@ -387,161 +387,77 @@ PRODUCT MODAL
             <!-- BODY -->
             <div class="modal-body p-4">
 
-               <form id="productForm">
+               <form id="productForm" enctype="multipart/form-data">
+
+                  <input
+                     type="hidden"
+                     name="restaurant_id"
+                     value="1">
 
                   <div class="row g-4">
 
-                     <!-- PRODUCT IMAGE -->
                      <div class="col-12">
 
                         <label class="form-label fw-semibold">
-
                            Product Image
-
                         </label>
 
                         <input
                            type="file"
+                           id="image"
+                           name="image"
                            class="form-control"
                            accept="image/*">
 
                      </div>
 
-                     <!-- PRODUCT NAME -->
                      <div class="col-md-6">
 
                         <label class="form-label fw-semibold">
-
                            Product Name
-
                         </label>
 
                         <input
                            type="text"
+                           id="name"
+                           name="name"
                            class="form-control"
-                           placeholder="Enter product name">
+                           required>
 
                      </div>
 
-                     <!-- CATEGORY -->
                      <div class="col-md-6">
 
                         <label class="form-label fw-semibold">
-
                            Category
-
                         </label>
 
-                        <select class="form-select">
+                        <select
+                           id="menu_category_id"
+                           name="menu_category_id"
+                           class="form-select"
+                           required>
 
-                           <option>
+                           <option value="">
                               Select Category
                            </option>
 
-                           <option>
-                              Electronics
-                           </option>
-
-                           <option>
-                              Fashion
-                           </option>
-
-                           <option>
-                              Furniture
-                           </option>
-
                         </select>
 
                      </div>
 
-                     <!-- PRICE -->
                      <div class="col-md-6">
 
                         <label class="form-label fw-semibold">
-
                            Price
-
                         </label>
 
                         <input
                            type="number"
+                           id="price"
+                           name="price"
                            class="form-control"
-                           placeholder="0">
-
-                     </div>
-
-                     <!-- STOCK -->
-                     <div class="col-md-6">
-
-                        <label class="form-label fw-semibold">
-
-                           Stock
-
-                        </label>
-
-                        <input
-                           type="number"
-                           class="form-control"
-                           placeholder="0">
-
-                     </div>
-
-                     <!-- DESCRIPTION -->
-                     <div class="col-12">
-
-                        <label class="form-label fw-semibold">
-
-                           Description
-
-                        </label>
-
-                        <textarea
-                           class="form-control"
-                           rows="4"
-                           placeholder="Write product description..."></textarea>
-
-                     </div>
-
-                     <!-- STATUS -->
-                     <div class="col-md-6">
-
-                        <label class="form-label fw-semibold">
-
-                           Product Status
-
-                        </label>
-
-                        <select class="form-select">
-
-                           <option>
-                              Active
-                           </option>
-
-                           <option>
-                              Draft
-                           </option>
-
-                           <option>
-                              Hidden
-                           </option>
-
-                        </select>
-
-                     </div>
-
-                     <!-- SKU -->
-                     <div class="col-md-6">
-
-                        <label class="form-label fw-semibold">
-
-                           SKU
-
-                        </label>
-
-                        <input
-                           type="text"
-                           class="form-control"
-                           placeholder="SKU-1024">
+                           required>
 
                      </div>
 
@@ -1029,52 +945,6 @@ PRODUCT MODAL
       console.log('Delete Product', id);
 
    }
-</script>
-
-<script>
-   document.addEventListener('DOMContentLoaded', () => {
-
-      // =====================================
-      // MODAL INSTANCE
-      // =====================================
-      const productModal = new bootstrap.Modal(
-
-         document.getElementById('productModal')
-
-      );
-
-      // =====================================
-      // OPEN MODAL
-      // =====================================
-      document
-         .getElementById('btnAddProduct')
-
-         .addEventListener('click', () => {
-
-            productModal.show();
-
-         });
-
-      // =====================================
-      // SUBMIT FORM
-      // =====================================
-      document
-         .getElementById('productForm')
-
-         .addEventListener('submit', function(e) {
-
-            e.preventDefault();
-
-            // DEMO ALERT
-            alert('Product saved successfully 🚀');
-
-            productModal.hide();
-
-            this.reset();
-
-         });
-
-   });
 
    function showGridSkeleton() {
 
@@ -1172,6 +1042,108 @@ PRODUCT MODAL
 
       $('#productTableBody').html(html);
    }
+</script>
+<script>
+   function loadCategoryModal() {
+
+      fetch('../controller/menuCategoryListController.php')
+         .then(response => response.json())
+         .then(res => {
+
+            let html =
+               '<option value="">Select Category</option>';
+
+            res.data.forEach(item => {
+
+               html += `
+                    <option value="${item.id}">
+                        ${item.name}
+                    </option>
+                `;
+            });
+
+            document
+               .getElementById('menu_category_id')
+               .innerHTML = html;
+         });
+   }
+</script>
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+      loadCategoryModal();
+      // =====================================
+      // MODAL INSTANCE
+      // =====================================
+      const productModal = new bootstrap.Modal(
+
+         document.getElementById('productModal')
+
+      );
+
+      // =====================================
+      // OPEN MODAL
+      // =====================================
+      document
+         .getElementById('btnAddProduct')
+
+         .addEventListener('click', () => {
+
+            productModal.show();
+
+         });
+
+      // =====================================
+      // SUBMIT FORM
+      // =====================================
+      document
+         .getElementById('productForm')
+         .addEventListener('submit', function(e) {
+
+            e.preventDefault();
+
+            const formData =
+               new FormData(this);
+
+            fetch(
+                  '../controller/productStoreController.php', {
+                     method: 'POST',
+                     body: formData
+                  }
+               )
+               .then(response => response.json())
+               .then(res => {
+
+                  if (!res.success) {
+
+                     alert(res.message);
+                     return;
+                  }
+
+                  alert(res.message);
+
+                  productModal.hide();
+
+                  document
+                     .getElementById('productForm')
+                     .reset();
+
+                  loadProducts();
+                  loadProductTable();
+
+               })
+               .catch(error => {
+
+                  console.error(error);
+
+                  alert(
+                     'Failed save product'
+                  );
+
+               });
+
+         });
+
+   });
 </script>
 
 </html>
